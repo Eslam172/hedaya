@@ -13,6 +13,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
+      theme: ThemeData(
+        primaryColor: const Color(0xffb07a1a),
+        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: const Color(0xfffffbf2)),
+        fontFamily: 'Quran',
+        scaffoldBackgroundColor: const Color(0xfffffbf2),
+        appBarTheme: const AppBarTheme(
+          color:  Color(0xffb07a1a),
+          iconTheme: IconThemeData(
+            color: Color(0xfffffbf2),
+          )
+        ),
+      ),
       debugShowCheckedModeBanner: false,
       onGenerateTitle: (context) {
         appContext = context;
