@@ -1,155 +1,203 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mushaf/app/extensions.dart';
+import 'package:mushaf/ui/about_screen/about_screen.dart';
 import 'package:mushaf/ui/azkar_screen/azkar_screen.dart';
+import 'package:mushaf/ui/bookmark_screen/bookmark_screen.dart';
 import 'package:mushaf/ui/hadeeth_screen/Hadeeth_screen.dart';
 import 'package:mushaf/ui/prayers_screen/prayers_screen.dart';
 import 'package:mushaf/ui/qepla_screen/qebla_screen.dart';
 import 'package:mushaf/ui/quran_screen/quran_screen.dart';
+import 'package:mushaf/ui/settings_screen/settings_screen.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  String textFormFile = 'Empty';
   var scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
+    return buildScreenContent();
+  }
+  Widget buildScreenContent() {
     return Scaffold(
-      key: scaffoldKey,
-      drawer: drawer(context),
-      body: Padding(
-        padding: EdgeInsets.only(top: 3.h),
-        child: Stack(
+      appBar: AppBar(
+        title:  Row(
           children: [
-            Image.asset(
-              'assets/images/background.jpg',
-              fit: BoxFit.fill,
-              height: double.infinity,
-              opacity: const AlwaysStoppedAnimation(.6),
+            IconButton(
+                onPressed: () {
+                  scaffoldKey.currentState!.openDrawer();
+                },
+                icon: Icon(
+                  Icons.list_outlined,
+                  color: Theme.of(context).primaryColor,
+                  size: 22.sp,
+                )),
+            SizedBox(
+              width: 5.w,
             ),
-            SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 3.w),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 1.h,
-                    ),
-                    Row(
-                      children: [
-                        IconButton(
-                            onPressed: () {
-                              scaffoldKey.currentState!.openDrawer();
-                            },
-                            icon: Icon(
-                              Icons.list_outlined,
-                              color: Theme.of(context).primaryColor,
-                              size: 22.sp,
-                            )),
-                        SizedBox(
-                          width: 20.w,
-                        ),
-                        Image.asset(
-                          'assets/images/quran_icon_2.png',
-                          width: 30.w,
-                          height: 7.h,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 2.h,
-                    ),
-                    customCard(
-                        name: 'الأذكار',
-                        image: 'assets/images/azkar_2.jpeg',
-                        width: double.infinity,
-                        height: 20.h,
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const AzkarScreen()));
-                        }),
-                    SizedBox(
-                      height: 2.h,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Column(
-                          children: [
-                            customCard(
-                                name: 'المصحف',
-                                image: 'assets/images/quran_2.jpg',
-                                width: 41.w,
-                                height: 30.h,
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const QuranScreen()));
-                                }),
-                            SizedBox(
-                              height: 2.h,
-                            ),
-                            customCard(
-                                name: 'الحديث الشريف',
-                                image: 'assets/images/hadeeth_2.jpg',
-                                width: 41.w,
-                                height: 20.h,
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const HadeethScreen()));
-                                }),
-                          ],
-                        ),
-                        SizedBox(
-                          width: 6.w,
-                        ),
-                        Column(
-                          children: [
-                            customCard(
-                                name: 'مواعيد الصلاة',
-                                image: 'assets/images/prayer.jpg',
-                                width: 41.w,
-                                height: 20.h,
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const PrayersScreen()));
-                                }),
-                            SizedBox(
-                              height: 2.h,
-                            ),
-                            customCard(
-                                name: 'القبلة',
-                                image: 'assets/images/kaaba.jpg',
-                                width: 41.w,
-                                height: 30.h,
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const QeblaScreen()));
-                                }),
-                          ],
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+            Image.asset(
+              'assets/images/quran_icon_2.png',
+              width: 30.w,
+              height: 7.h,
             ),
           ],
         ),
       ),
+      key: scaffoldKey,
+      drawer: drawer(context),
+      body: Stack(
+        children: [
+          Image.asset(
+            'assets/images/background.jpg',
+            fit: BoxFit.fill,
+            height: double.infinity,
+            opacity: const AlwaysStoppedAnimation(.6),
+          ),
+          SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 3.w),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+
+
+                  SizedBox(
+                    height: 4.h,
+                  ),
+                  customCard(
+                      name: 'الأذكار',
+                      image: 'assets/images/azkar_2.jpeg',
+                      width: double.infinity,
+                      height: 20.h,
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const AzkarScreen()));
+                      }),
+                  SizedBox(
+                    height: 2.h,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          customCard(
+                              name: 'المصحف',
+                              image: 'assets/images/quran_2.jpg',
+                              width: 41.w,
+                              height: 30.h,
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const QuranScreen()));
+                              }),
+                          SizedBox(
+                            height: 2.h,
+                          ),
+                          customCard(
+                              name: 'الحديث الشريف',
+                              image: 'assets/images/hadeeth_2.jpg',
+                              width: 41.w,
+                              height: 20.h,
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const HadeethScreen()));
+                              }),
+                        ],
+                      ),
+                      SizedBox(
+                        width: 6.w,
+                      ),
+                      Column(
+                        children: [
+                          customCard(
+                              name: 'مواعيد الصلاة',
+                              image: 'assets/images/prayer.jpg',
+                              width: 41.w,
+                              height: 20.h,
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const PrayersScreen()));
+                              }),
+                          SizedBox(
+                            height: 2.h,
+                          ),
+                          customCard(
+                              name: 'القبلة',
+                              image: 'assets/images/kaaba.jpg',
+                              width: 41.w,
+                              height: 30.h,
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const QeblaScreen()));
+                              }),
+                        ],
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
+  }
+
+  PackageInfo _packageInfo = PackageInfo(
+    appName: 'Unknown',
+    packageName: 'Unknown',
+    version: 'Unknown',
+    buildNumber: 'Unknown',
+    buildSignature: 'Unknown',
+    installerStore: 'Unknown',
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    _initPackageInfo();
+    getData();
+
+  }
+
+  Future<void> _initPackageInfo() async {
+    final info = await PackageInfo.fromPlatform();
+    setState(() {
+      _packageInfo = info;
+    });
+  }
+
+  getData() async {
+    String completeQuran;
+    completeQuran =
+    await rootBundle.loadString('assets/text/complete_quran.txt');
+    setState(() {
+      textFormFile = completeQuran;
+    });
+    return textFormFile;
   }
 
   Widget customCard({
@@ -198,7 +246,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget drawer(context) {
     return Drawer(
-      width: 50.w,
+      width: 55.w,
       child: ListView(
         children: [
           SizedBox(
@@ -223,7 +271,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Icon(
                   Icons.settings,
-                  size: 15.sp,
+                  size: 18.sp,
                   color: Theme.of(context).primaryColor,
                 ),
                 Text(
@@ -236,8 +284,10 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
             onTap: () {
-              // Update the state of the app.
-              // ...
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const SettingsScreen()));
             },
           ),
           ListTile(
@@ -246,7 +296,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Icon(
                   Icons.bookmark,
-                  size: 15.sp,
+                  size: 18.sp,
                   color: Theme.of(context).primaryColor,
                 ),
                 Text(
@@ -259,9 +309,107 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
             onTap: () {
-              // Update the state of the app.
-              // ...
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const BookmarkScreen()));
             },
+          ),
+          ListTile(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Icon(
+                  Icons.info_outline,
+                  size: 18.sp,
+                  color: Theme.of(context).primaryColor,
+                ),
+                Text(
+                  'عن التطبيق',
+                  style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).primaryColor),
+                ),
+              ],
+            ),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const AboutScreen()));
+            },
+          ),
+          ListTile(
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Image.asset(
+                    'assets/images/open_hands.png',
+                    width: 6.w,
+                    height: 6.h,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  Text(
+                    'دعاء ختم القرءان',
+                    style: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).primaryColor),
+                  ),
+                ],
+              ),
+              onTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  backgroundColor: Colors.transparent,
+                  isScrollControlled: true,
+                  //clipBehavior: Clip.antiAlias,
+                  builder: (context) => Container(
+                    margin:
+                        EdgeInsets.only(left: 2.w,right: 2.w, top: 12.h,bottom: 1.h),
+                    padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
+                    decoration: BoxDecoration(
+                        color: const Color(0xfffffbf2).withOpacity(.92),
+                        borderRadius: BorderRadius.circular(35)),
+                    child: SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(),
+                      child: Column(
+                        children: [
+                          Text(textFormFile,
+                          style: TextStyle(
+                            fontSize: 23.sp,
+                            fontWeight: FontWeight.w500,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          textAlign: TextAlign.right,
+                        )],
+                      ),
+                    ),
+                  ),
+                );
+              }),
+          ListTile(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  _packageInfo.version,
+                  style: TextStyle(
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey.shade500),
+                ),
+                SizedBox(
+                  width: 3.w,
+                ),
+                Text(
+                  'رقم الإصدار',
+                  style: TextStyle(
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey.shade500),
+                ),
+              ],
+            ),
           ),
         ],
       ),

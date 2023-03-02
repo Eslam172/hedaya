@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mushaf/ui/home_screen/home_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -19,6 +21,16 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Quran',
         scaffoldBackgroundColor: const Color(0xfffffbf2),
         appBarTheme: const AppBarTheme(
+          elevation: 5,
+          actionsIconTheme: IconThemeData(
+            color: Color(0xfffffbf2),
+          ),
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: Color(0xffb07a1a),
+            statusBarBrightness: Brightness.light,
+            statusBarIconBrightness: Brightness.light,
+
+          ),
           color:  Color(0xffb07a1a),
           iconTheme: IconThemeData(
             color: Color(0xfffffbf2),
@@ -26,6 +38,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
+
       onGenerateTitle: (context) {
         appContext = context;
         return '';
