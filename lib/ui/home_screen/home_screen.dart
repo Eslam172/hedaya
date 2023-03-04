@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 5.w,
             ),
             Image.asset(
-              'assets/images/quran_icon_2.png',
+              'assets/images/hedaya_logo.png',
               width: 30.w,
               height: 7.h,
             ),
@@ -376,7 +376,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Text(textFormFile,
                           style: TextStyle(
-                            fontSize: 23.sp,
+                            fontSize: 20.sp,
+                            fontFamily: 'Mushaf',
                             fontWeight: FontWeight.w500,
                             color: Theme.of(context).primaryColor,
                           ),

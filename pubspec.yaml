@@ -34,6 +34,8 @@ dependencies:
 
   package_info_plus: ^3.0.3
   cached_network_image: ^3.2.3
+  adhan: ^1.1.16
+  shared_preferences: ^2.0.18
 
 
 
@@ -67,6 +69,7 @@ flutter:
   assets:
     - assets/images/
     - assets/text/
+    - assets/json/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -84,6 +87,11 @@ flutter:
      - family: Quran
        fonts:
          - asset: assets/fonts/mushaf.ttf
+
+
+     - family: Mushaf
+       fonts:
+         - asset: assets/fonts/me_quran.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
