@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mushaf/app/extensions.dart';
+import 'package:mushaf/models/surah_model.dart';
 import 'package:mushaf/ui/about_screen/about_screen.dart';
 import 'package:mushaf/ui/azkar_screen/azkar_screen.dart';
 import 'package:mushaf/ui/bookmark_screen/bookmark_screen.dart';
 import 'package:mushaf/ui/hadeeth_screen/Hadeeth_screen.dart';
 import 'package:mushaf/ui/prayers_screen/prayers_screen.dart';
 import 'package:mushaf/ui/qepla_screen/qebla_screen.dart';
+import 'package:mushaf/ui/quran_screen/builder/surah_list_builder.dart';
 import 'package:mushaf/ui/quran_screen/quran_screen.dart';
 import 'package:mushaf/ui/settings_screen/settings_screen.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -20,12 +22,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String textFormFile = 'Empty';
+  List<SurahModel> surah=[];
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return buildScreenContent();
   }
+
   Widget buildScreenContent() {
     return Scaffold(
       appBar: AppBar(
@@ -44,9 +48,9 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 5.w,
             ),
             Image.asset(
-              'assets/images/hedaya_logo.png',
+              'assets/images/ramadan.png',
               width: 30.w,
-              height: 7.h,
+              height: 6.h,
             ),
           ],
         ),
@@ -102,7 +106,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const QuranScreen()));
+                                             QuranScreen()
+                                    )
+                                );
                               }),
                           SizedBox(
                             height: 2.h,
@@ -250,18 +256,27 @@ class _HomeScreenState extends State<HomeScreen> {
       child: ListView(
         children: [
           SizedBox(
-            height: 10.h,
+            height: 20.h,
             child: DrawerHeader(
               decoration: BoxDecoration(
                 color: Theme.of(context).primaryColor,
               ),
-              child: Text(
-                'هداية',
-                style: TextStyle(
-                    fontSize: 22.sp,
-                    fontWeight: FontWeight.bold,
-                    color: const Color(0xfffffbf2)),
-                textAlign: TextAlign.center,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset('assets/images/hedaya_icon.png',
+                    width: 25.w,
+                    height: 8.h,
+                  ),
+                  Text(
+                    'هداية',
+                    style: TextStyle(
+                        fontSize: 22.sp,
+                        fontWeight: FontWeight.bold,
+                        color: const Color(0xfffffbf2)),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
             ),
           ),
@@ -269,11 +284,6 @@ class _HomeScreenState extends State<HomeScreen> {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(
-                  Icons.settings,
-                  size: 18.sp,
-                  color: Theme.of(context).primaryColor,
-                ),
                 Text(
                   'الإعدادات',
                   style: TextStyle(
@@ -281,6 +291,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontWeight: FontWeight.bold,
                       color: Theme.of(context).primaryColor),
                 ),
+                Icon(
+                  Icons.settings,
+                  size: 18.sp,
+                  color: Theme.of(context).primaryColor,
+                ),
+
               ],
             ),
             onTap: () {
@@ -294,11 +310,6 @@ class _HomeScreenState extends State<HomeScreen> {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(
-                  Icons.bookmark,
-                  size: 18.sp,
-                  color: Theme.of(context).primaryColor,
-                ),
                 Text(
                   'علامة الوقوف',
                   style: TextStyle(
@@ -306,6 +317,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontWeight: FontWeight.bold,
                       color: Theme.of(context).primaryColor),
                 ),
+                Icon(
+                  Icons.bookmark,
+                  size: 18.sp,
+                  color: Theme.of(context).primaryColor,
+                ),
+
               ],
             ),
             onTap: () {
@@ -319,11 +336,6 @@ class _HomeScreenState extends State<HomeScreen> {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(
-                  Icons.info_outline,
-                  size: 18.sp,
-                  color: Theme.of(context).primaryColor,
-                ),
                 Text(
                   'عن التطبيق',
                   style: TextStyle(
@@ -331,6 +343,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontWeight: FontWeight.bold,
                       color: Theme.of(context).primaryColor),
                 ),
+                Icon(
+                  Icons.info_outline,
+                  size: 18.sp,
+                  color: Theme.of(context).primaryColor,
+                ),
+
               ],
             ),
             onTap: () {
@@ -342,12 +360,6 @@ class _HomeScreenState extends State<HomeScreen> {
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image.asset(
-                    'assets/images/open_hands.png',
-                    width: 6.w,
-                    height: 6.h,
-                    color: Theme.of(context).primaryColor,
-                  ),
                   Text(
                     'دعاء ختم القرءان',
                     style: TextStyle(
@@ -355,6 +367,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         fontWeight: FontWeight.bold,
                         color: Theme.of(context).primaryColor),
                   ),
+                  Image.asset(
+                    'assets/images/open_hands.png',
+                    width: 6.w,
+                    height: 6.h,
+                    color: Theme.of(context).primaryColor,
+                  ),
+
                 ],
               ),
               onTap: () {
@@ -368,7 +387,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         EdgeInsets.only(left: 2.w,right: 2.w, top: 12.h,bottom: 1.h),
                     padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
                     decoration: BoxDecoration(
-                        color: const Color(0xfffffbf2).withOpacity(.92),
+                       // color: const Color(0xfffffbf2),
+                      color: Color(0xffFEF5E7),
                         borderRadius: BorderRadius.circular(35)),
                     child: SingleChildScrollView(
                       physics: const BouncingScrollPhysics(),
@@ -379,7 +399,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontSize: 20.sp,
                             fontFamily: 'Mushaf',
                             fontWeight: FontWeight.w500,
-                            color: Theme.of(context).primaryColor,
+                            //color: Theme.of(context).primaryColor,
+                            color: Colors.black
                           ),
                           textAlign: TextAlign.right,
                         )],
@@ -393,7 +414,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  _packageInfo.version,
+                  'رقم الإصدار',
                   style: TextStyle(
                       fontSize: 15.sp,
                       fontWeight: FontWeight.bold,
@@ -403,12 +424,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: 3.w,
                 ),
                 Text(
-                  'رقم الإصدار',
+                  _packageInfo.version,
                   style: TextStyle(
                       fontSize: 15.sp,
                       fontWeight: FontWeight.bold,
                       color: Colors.grey.shade500),
                 ),
+
+
               ],
             ),
           ),

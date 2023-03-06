@@ -36,6 +36,10 @@ dependencies:
   cached_network_image: ^3.2.3
   adhan: ^1.1.16
   shared_preferences: ^2.0.18
+  flutter_native_splash: ^2.2.15
+
+  fluttertoast: ^8.2.1
+
 
 
 
@@ -46,6 +50,13 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_native_splash:
+  color: "#fffbf2"
+  image: assets/images/hedaya_icon.png
+  android: true
+  ios: true
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -70,6 +81,7 @@ flutter:
     - assets/images/
     - assets/text/
     - assets/json/
+    - assets/pdf/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

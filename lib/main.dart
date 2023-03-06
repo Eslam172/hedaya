@@ -17,13 +17,15 @@ class MyApp extends StatelessWidget {
     return  MaterialApp(
       theme: ThemeData(
         primaryColor: const Color(0xffb07a1a),
-        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: const Color(0xfffffbf2)),
+        primarySwatch: Colors.amber,
+
+        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: const Color(0xffFEF5E7)),
         fontFamily: 'Quran',
-        scaffoldBackgroundColor: const Color(0xfffffbf2),
+        scaffoldBackgroundColor: const Color(0xffFEF5E7),
         appBarTheme: const AppBarTheme(
           elevation: 5,
           actionsIconTheme: IconThemeData(
-            color: Color(0xfffffbf2),
+            color: Color(0xffFEF5E7),
           ),
           systemOverlayStyle: SystemUiOverlayStyle(
             statusBarColor: Color(0xffb07a1a),
@@ -33,7 +35,7 @@ class MyApp extends StatelessWidget {
           ),
           color:  Color(0xffb07a1a),
           iconTheme: IconThemeData(
-            color: Color(0xfffffbf2),
+            color: Color(0xffFEF5E7),
           )
         ),
       ),
@@ -43,7 +45,9 @@ class MyApp extends StatelessWidget {
         appContext = context;
         return '';
       },
-      home: HomeScreen(),
+      home: Directionality(
+          textDirection: TextDirection.rtl,
+          child: HomeScreen()),
     );
   }
 }
