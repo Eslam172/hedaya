@@ -37,8 +37,9 @@ dependencies:
   adhan: ^1.1.16
   shared_preferences: ^2.0.18
   flutter_native_splash: ^2.2.15
-
+  pdfx: ^2.3.0
   fluttertoast: ^8.2.1
+
 
 
 

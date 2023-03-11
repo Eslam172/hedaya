@@ -32,29 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget buildScreenContent() {
     return Scaffold(
-      appBar: AppBar(
-        title:  Row(
-          children: [
-            IconButton(
-                onPressed: () {
-                  scaffoldKey.currentState!.openDrawer();
-                },
-                icon: Icon(
-                  Icons.list_outlined,
-                  color: Theme.of(context).primaryColor,
-                  size: 22.sp,
-                )),
-            SizedBox(
-              width: 5.w,
-            ),
-            Image.asset(
-              'assets/images/ramadan.png',
-              width: 30.w,
-              height: 6.h,
-            ),
-          ],
-        ),
-      ),
+      appBar: customAppBar(),
       key: scaffoldKey,
       drawer: drawer(context),
       body: Stack(
@@ -123,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const HadeethScreen()));
+                                             HadeethScreen()));
                               }),
                         ],
                       ),
@@ -436,6 +414,16 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  PreferredSizeWidget customAppBar(){
+    return AppBar(
+      title:  Image.asset(
+        'assets/images/ramadan.png',
+        width: 30.w,
+        height: 6.h,
       ),
     );
   }

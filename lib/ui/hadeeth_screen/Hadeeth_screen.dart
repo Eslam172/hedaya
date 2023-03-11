@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:mushaf/app/constants.dart';
 import 'package:mushaf/app/extensions.dart';
+import 'package:pdfx/pdfx.dart';
 
 class HadeethScreen extends StatelessWidget {
-  const HadeethScreen({Key? key}) : super(key: key);
-
+   HadeethScreen({Key? key}) : super(key: key);
+  final pdfController = PdfController(
+    document: PdfDocument.openAsset('assets/pdf/quran.pdf'),
+  );
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        children: [
-          Center(
-            child: Text('بسم الله الرحمن الرحيم',style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 25.sp
-            ),),
-          )
-        ],
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        appBar: defaultAppBar('الحديث الشريف', context),
+
       ),
     );
   }

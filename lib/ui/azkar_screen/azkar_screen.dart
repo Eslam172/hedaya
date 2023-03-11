@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mushaf/app/constants.dart';
 import 'package:mushaf/app/extensions.dart';
 
 class AzkarScreen extends StatelessWidget {
@@ -6,17 +7,20 @@ class AzkarScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        children: [
-          Center(
-            child: Text('بسم الله الرحمن الرحيم',style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 25.sp
-            ),),
-          )
-        ],
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        appBar: defaultAppBar('الأذكار', context),
+        body: Column(
+          children: [
+            Center(
+              child: Text('بسم الله الرحمن الرحيم',style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 25.sp
+              ),),
+            )
+          ],
+        ),
       ),
     );
   }

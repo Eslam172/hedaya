@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mushaf/app/constants.dart';
 import 'package:mushaf/app/extensions.dart';
 import 'package:mushaf/models/surah_model.dart';
+import 'package:mushaf/ui/quran_screen/builder/surah_view_builder.dart';
 
 class SurahListBuilder extends StatefulWidget {
     final List<SurahModel> surah;
@@ -24,42 +26,42 @@ class _SurahListBuilderState extends State<SurahListBuilder> {
     print(surah.length);
   }
 
-  // void filterSearchResults(String query) {
-  //   /// Fill surah list if empty
-  //   initSurahListView();
-  //
-  //   /// SearchList contains every surah
-  //   List<Surah> searchList = List<Surah>();
-  //   searchList.addAll(surah);
-  //
-  //   /// Contains matching surah(s)
-  //   List<Surah> listData = List<Surah>();
-  //   if (query.isNotEmpty) {
-  //     /// Loop all surah(s)
-  //     searchList.forEach((item) {
-  //       /// Filter by (titleAr:exact,title:partial,pageIndex)
-  //       if (item.titleAr.contains(query) ||
-  //           item.title.toLowerCase().contains(query.toLowerCase()) ||
-  //           item.pageIndex.toString().contains(query)) {
-  //         listData.add(item);
-  //       }
-  //     });
-  //
-  //     /// Fill surah List with searched surah(s)
-  //     setState(() {
-  //       surah.clear();
-  //       surah.addAll(listData);
-  //     });
-  //     return;
-  //
-  //     /// Show all surah list
-  //   } else {
-  //     setState(() {
-  //       surah.clear();
-  //       surah.addAll(widget.surah);
-  //     });
-  //   }
-  // }
+  void filterSearchResults(String query) {
+    /// Fill surah list if empty
+    initSurahListView();
+
+    /// SearchList contains every surah
+    List<SurahModel> searchList = <SurahModel>[];
+    searchList.addAll(surah);
+
+    /// Contains matching surah(s)
+    List<SurahModel> listData = <SurahModel>[];
+    if (query.isNotEmpty) {
+      /// Loop all surah(s)
+      searchList.forEach((item) {
+        /// Filter by (titleAr:exact,title:partial,pageIndex)
+        if (item.titleAr!.contains(query) ||
+            item.title!.toLowerCase().contains(query.toLowerCase()) ||
+            item.pageIndex.toString().contains(query)) {
+          listData.add(item);
+        }
+      });
+
+      /// Fill surah List with searched surah(s)
+      setState(() {
+        surah.clear();
+        surah.addAll(listData);
+      });
+      return;
+
+      /// Show all surah list
+    } else {
+      setState(() {
+        surah.clear();
+        surah.addAll(widget.surah);
+      });
+    }
+  }
 
   @override
   void initState() {
@@ -71,14 +73,7 @@ class _SurahListBuilderState extends State<SurahListBuilder> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('المصحف',style: TextStyle(
-          fontSize: 20.sp,
-          fontWeight: FontWeight.bold,
-          color: Color(0xffFEF5E7)
-        ),),
-        centerTitle: true,
-      ),
+      appBar: defaultAppBar('المصحف', context),
       body: Column(
         children: <Widget>[
           /// Search field
@@ -95,19 +90,23 @@ class _SurahListBuilderState extends State<SurahListBuilder> {
 
   Widget buildSearchContainer(){
     return Padding(
-      padding:  EdgeInsets.symmetric(vertical: 2.h,horizontal: 2.w),
+      padding:  EdgeInsets.symmetric(vertical: 2.h,horizontal: 3.w),
       child: TextField(
         cursorColor: Colors.black,
-
+        style: TextStyle(
+          fontSize: 15.sp,
+          fontWeight: FontWeight.w600
+        ),
+        cursorHeight: 4.h,
+        cursorWidth: .4.w,
         onChanged: (value) {
-          //filterSearchResults(value);
+          filterSearchResults(value);
           print(value);
         },
         controller: editingController,
-
         decoration: InputDecoration(
           labelText: "البحث عن سورة",
-          contentPadding: EdgeInsets.symmetric(vertical: 2.h,horizontal: 2.w),
+          contentPadding: EdgeInsets.symmetric(vertical: 1.5.h,horizontal: 2.w),
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
                   width: 1,
@@ -166,11 +165,12 @@ class _SurahListBuilderState extends State<SurahListBuilder> {
           ),
           onTap: () {
             /// Push to Quran view ([int pages] represent surah page(reversed index))
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (context) =>
-            //             SurahViewBuilder(pages: surah[index].pages)));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        SurahViewBuilder(pages: surah[index].pages!)));
+
           }),
     );
   }
