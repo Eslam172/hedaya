@@ -19,21 +19,25 @@ class _SurahViewBuilderState extends State<SurahViewBuilder> {
   /// My Document
   final pdfController = PdfController(
     document: PdfDocument.openAsset('assets/pdf/quran.pdf'),
-    viewportFraction: .95.sp,
+    viewportFraction: 50,
+
 
   );
 
   @override
   Widget build(BuildContext context) {
     return
-       Scaffold(
-         backgroundColor: Colors.white,
-         body: PdfView(
-                  controller: pdfController,
-                  scrollDirection: Axis.horizontal,
-                  physics: BouncingScrollPhysics(),
+       Directionality(
+         textDirection: TextDirection.rtl,
+         child: Scaffold(
+           backgroundColor: Colors.white,
+           body: PdfView(
+                    controller: pdfController,
+                    scrollDirection: Axis.horizontal,
+                    physics: BouncingScrollPhysics(),
 
-                ),
+                  ),
+         ),
        );
 
 
