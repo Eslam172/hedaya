@@ -362,7 +362,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   //clipBehavior: Clip.antiAlias,
                   builder: (context) => Container(
                     margin:
-                        EdgeInsets.only(left: 2.w,right: 2.w, top: 12.h,bottom: 1.h),
+                        EdgeInsets.only(left: 2.w,right: 2.w, top: 20.h,bottom: 1.h),
                     padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
                     decoration: BoxDecoration(
                        // color: const Color(0xfffffbf2),
@@ -374,10 +374,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Text(textFormFile,
                           style: TextStyle(
-                            fontSize: 20.sp,
-                            fontFamily: 'Mushaf',
-                            fontWeight: FontWeight.w500,
-                            //color: Theme.of(context).primaryColor,
+                            fontSize: 16.sp,
+                            fontFamily: 'Regular',
+                            height: .3.h,
                             color: Colors.black
                           ),
                           textAlign: TextAlign.right,

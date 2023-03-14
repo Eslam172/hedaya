@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mushaf/app/extensions.dart';
 import 'package:pdfx/pdfx.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:device_info_plus/device_info_plus.dart';
 import '../../../app/constants.dart';
 
 class SurahViewBuilder extends StatefulWidget {
