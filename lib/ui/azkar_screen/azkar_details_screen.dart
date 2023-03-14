@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mushaf/app/constants.dart';
 import 'package:mushaf/app/extensions.dart';
 import 'dart:convert';
@@ -18,11 +19,72 @@ class AzkarDetailScreen extends StatefulWidget {
 class _AzkarDetailScreenState extends State<AzkarDetailScreen> {
   List<AzkarDetaislModel> sectionDetails = [];
 
-  List<int> counter =[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+  List<int> counter = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ];
 
-  List<IconData> icon = [Icons.add,Icons.add,Icons.add,Icons.add,Icons.add,Icons.add,Icons.add,Icons.add,Icons.add,
-    Icons.add,Icons.add,Icons.add,Icons.add,Icons.add,Icons.add,Icons.add,Icons.add,Icons.add,Icons.add,Icons.add,
-    Icons.add,Icons.add,Icons.add,Icons.add,Icons.add,Icons.add,Icons.add,Icons.add,Icons.add,Icons.add,Icons.add
+  List<IconData> icon = [
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add,
+    Icons.add
   ];
 
   @override
@@ -62,12 +124,14 @@ class _AzkarDetailScreenState extends State<AzkarDetailScreen> {
                         ),
                         leading: Column(
                           children: [
-                            Text("عدد المرات",
+                            Text(
+                              "عدد المرات",
                               style: TextStyle(
                                 fontFamily: 'Regular',
                               ),
                             ),
-                            Text("${sectionDetails[index].count}",
+                            Text(
+                              "${sectionDetails[index].count}",
                               style: TextStyle(
                                 fontFamily: 'Regular',
                               ),
@@ -79,17 +143,16 @@ class _AzkarDetailScreenState extends State<AzkarDetailScreen> {
                             Text(
                               "${sectionDetails[index].content}",
                               textDirection: TextDirection.rtl,
-                              style: TextStyle(fontSize: 11.sp,
-                                fontFamily: 'Regular'
-                              ),
+                              style: TextStyle(
+                                  fontSize: 11.sp, fontFamily: 'Regular'),
                             ),
                             Text(
                               "${sectionDetails[index].description}",
                               textDirection: TextDirection.rtl,
-                              style: TextStyle(fontSize: 11.sp,
+                              style: TextStyle(
+                                  fontSize: 11.sp,
                                   fontFamily: 'Regular',
-                                color: Colors.black
-                              ),
+                                  color: Colors.black),
                             ),
                           ],
                         ),
@@ -99,11 +162,11 @@ class _AzkarDetailScreenState extends State<AzkarDetailScreen> {
                       height: 7.h,
                       margin: EdgeInsets.symmetric(horizontal: 4.w),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(20),
                             bottomRight: Radius.circular(20),
                             topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10)
-                        ),
+                            topRight: Radius.circular(10)),
                         color: Theme.of(context).primaryColor,
                       ),
                       child: Row(
@@ -114,25 +177,31 @@ class _AzkarDetailScreenState extends State<AzkarDetailScreen> {
                             radius: 20,
                             child: Center(
                               child: IconButton(
-                                 onPressed: (){
+                                onPressed: () {
                                   setState(() {
                                     counter[index]++;
-                                    if(icon[index] ==Icons.check_circle){
-                                      counter[index] =0;
-                                    }
-                                  });
-                                  if(counter[index] == sectionDetails[index].count){
-                                    counter[index] =0;
-                                    icon[index] = Icons.check_circle;
-
+                                  });if (icon[index] == Icons.check_circle){
+                                    counter[index] = sectionDetails[index].count!;
+                                    Fluttertoast.showToast(
+                                        msg: "لقد اكملت عدد المرات المذكور",
+                                        toastLength: Toast.LENGTH_LONG,
+                                        gravity: ToastGravity.BOTTOM,
+                                        timeInSecForIosWeb: 1,
+                                        backgroundColor: Theme.of(context).primaryColor,
+                                        textColor: Colors.white,
+                                        fontSize: 13.0.sp,
+                                    );
                                   }
-                                  else {
-                                    //icon[index] = Icons.add;
+                                   else if (counter[index] ==
+                                      sectionDetails[index].count) {
+                                    counter[index] = 0;
+                                    icon[index] = Icons.check_circle;
                                   }
 
                                   print(counter[index]);
                                 },
-                                icon: Icon(icon[index],
+                                icon: Icon(
+                                  icon[index],
                                   color: Theme.of(context).primaryColor,
                                 ),
                               ),
@@ -144,18 +213,16 @@ class _AzkarDetailScreenState extends State<AzkarDetailScreen> {
                                 "التكرار",
                                 textDirection: TextDirection.rtl,
                                 style: TextStyle(
-                                    fontFamily: 'Regular',
-                                    color: Colors.white
-                                ),
+                                    fontFamily: 'Regular', color: Colors.white),
                               ),
-                              SizedBox(width: 2.w,),
+                              SizedBox(
+                                width: 2.w,
+                              ),
                               Text(
                                 '${counter[index]}',
                                 textDirection: TextDirection.rtl,
                                 style: TextStyle(
-                                    fontFamily: 'Regular',
-                                    color: Colors.white
-                                ),
+                                    fontFamily: 'Regular', color: Colors.white),
                               ),
                             ],
                           ),
@@ -173,7 +240,6 @@ class _AzkarDetailScreenState extends State<AzkarDetailScreen> {
       ),
     );
   }
-
 
   loadSectionDetail() async {
     sectionDetails = [];
