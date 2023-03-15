@@ -137,6 +137,9 @@ class _SurahListBuilderState extends State<SurahListBuilder> {
     return ListView.builder(
       itemCount: surah.length,
       itemExtent: 9.h,
+      /// Adding bottom padding
+      /// In order to making a space after last Surah
+      padding: const EdgeInsets.only(bottom: 16.0,),
       physics: const BouncingScrollPhysics(),
       itemBuilder: (BuildContext context, int index) => ListTile(
           title: Text(surah[index].titleAr!,
@@ -166,11 +169,13 @@ class _SurahListBuilderState extends State<SurahListBuilder> {
           onTap: () {
             /// Push to Quran view ([int pages] represent surah page(reversed index))
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        SurahViewBuilder(pages: surah[index].pages!)));
-
+              context,
+              MaterialPageRoute(
+                builder: (context) => SurahViewBuilder(
+                  pages: surah[index].pages!,
+                ),
+              ),
+            );
           }),
     );
   }

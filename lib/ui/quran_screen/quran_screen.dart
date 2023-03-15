@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:mushaf/app/extensions.dart';
 import 'package:mushaf/models/surah_model.dart';
 
 import 'builder/surah_list_builder.dart';
