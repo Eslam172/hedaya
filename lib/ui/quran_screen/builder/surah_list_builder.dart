@@ -124,7 +124,6 @@ class _SurahListBuilderState extends State<SurahListBuilder> {
               fontSize: 20.sp,
               fontWeight: FontWeight.w500
           ),
-          // hintText: "البحث",
           prefixIcon: Icon(Icons.search,
             color: Colors.black,
           ),

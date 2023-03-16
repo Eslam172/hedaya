@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pdfx/pdfx.dart';
-import '../../../app/constants.dart';
 
 class SurahViewBuilder extends StatefulWidget {
   SurahViewBuilder({
@@ -32,7 +31,7 @@ class _SurahViewBuilderState extends State<SurahViewBuilder> {
     ///
     pdfController = PdfController(
       document: PdfDocument.openAsset('assets/pdf/quran.pdf'),
-      viewportFraction: 50,
+      viewportFraction: 1,
       initialPage: widget.pages,
     );
     super.initState();
@@ -52,8 +51,6 @@ class _SurahViewBuilderState extends State<SurahViewBuilder> {
                   ),
          ),
        );
-
-
   }
 
 }
