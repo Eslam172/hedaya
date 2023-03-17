@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mushaf/app/extensions.dart';
@@ -5,13 +6,14 @@ import 'package:mushaf/models/surah_model.dart';
 import 'package:mushaf/ui/about_screen/about_screen.dart';
 import 'package:mushaf/ui/azkar_screen/azkar_screen.dart';
 import 'package:mushaf/ui/bookmark_screen/bookmark_screen.dart';
-import 'package:mushaf/ui/hadeeth_screen/Hadeeth_screen.dart';
 import 'package:mushaf/ui/prayers_screen/prayers_screen.dart';
 import 'package:mushaf/ui/qepla_screen/qebla_screen.dart';
-import 'package:mushaf/ui/quran_screen/builder/surah_list_builder.dart';
 import 'package:mushaf/ui/quran_screen/quran_screen.dart';
 import 'package:mushaf/ui/settings_screen/settings_screen.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+
+import '../hadith_screen/hadith_screen.dart';
+
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -50,22 +52,10 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-
-
                   SizedBox(
                     height: 4.h,
                   ),
-                  customCard(
-                      name: 'الأذكار',
-                      image: 'assets/images/azkar_2.jpeg',
-                      width: double.infinity,
-                      height: 20.h,
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const AzkarScreen()));
-                      }),
+                  buildSlider(),
                   SizedBox(
                     height: 2.h,
                   ),
@@ -101,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                             HadeethScreen()));
+                                             HadithScreen()));
                               }),
                         ],
                       ),
@@ -140,6 +130,23 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       )
                     ],
+                  ),
+                  SizedBox(
+                    height: 2.h,
+                  ),
+                  customCard(
+                      name: 'الأذكار',
+                      image: 'assets/images/azkar_2.jpeg',
+                      width: double.infinity,
+                      height: 20.h,
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const AzkarScreen()));
+                      }),
+                  SizedBox(
+                    height: 2.h,
                   ),
                 ],
               ),
@@ -226,6 +233,33 @@ class _HomeScreenState extends State<HomeScreen> {
             )
           ],
         ));
+  }
+
+  Widget buildSlider(){
+    return CarouselSlider(
+      options: CarouselOptions(
+          height: 25.h,
+        autoPlay: true,
+        animateToClosest: true,
+        pauseAutoPlayOnTouch: true,
+
+      ),
+
+      items: [1,2,3,4,5].map((i) {
+        return Builder(
+          builder: (BuildContext context) {
+            return Container(
+                width: MediaQuery.of(context).size.width,
+                margin: EdgeInsets.symmetric(horizontal: 5.0),
+                decoration: BoxDecoration(
+                    color: Colors.amber
+                ),
+                child: Text('text $i', style: TextStyle(fontSize: 16.0),)
+            );
+          },
+        );
+      }).toList(),
+    );
   }
 
   Widget drawer(context) {
@@ -426,4 +460,5 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
 }

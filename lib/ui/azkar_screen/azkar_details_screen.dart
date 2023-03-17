@@ -17,7 +17,7 @@ class AzkarDetailScreen extends StatefulWidget {
 }
 
 class _AzkarDetailScreenState extends State<AzkarDetailScreen> {
-  List<AzkarDetaislModel> sectionDetails = [];
+  List<AzkarDetailsModel> sectionDetails = [];
 
   List<int> counter = [
     0,
@@ -110,6 +110,7 @@ class _AzkarDetailScreenState extends State<AzkarDetailScreen> {
                     Card(
                       color: Colors.white,
                       elevation: 5,
+                      shadowColor: Theme.of(context).primaryColor,
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25),
@@ -248,7 +249,7 @@ class _AzkarDetailScreenState extends State<AzkarDetailScreen> {
         .then((data) {
       var response = json.decode(data);
       response.forEach((section) {
-        AzkarDetaislModel _sectionDetail = AzkarDetaislModel.fromJson(section);
+        AzkarDetailsModel _sectionDetail = AzkarDetailsModel.fromJson(section);
 
         if (_sectionDetail.sectionId == widget.id) {
           sectionDetails.add(_sectionDetail);

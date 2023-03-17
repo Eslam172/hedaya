@@ -6,17 +6,19 @@ import 'package:mushaf/app/extensions.dart';
 import 'dart:convert';
 
 import 'package:mushaf/models/azkar_model.dart';
+import 'package:mushaf/models/hadith_model.dart';
 import 'package:mushaf/ui/azkar_screen/azkar_details_screen.dart';
+import 'package:mushaf/ui/hadith_screen/hadith_details_screen.dart';
 
-class AzkarScreen extends StatefulWidget {
-  const AzkarScreen({Key? key}) : super(key: key);
+class HadithScreen extends StatefulWidget {
+  const HadithScreen({Key? key}) : super(key: key);
 
   @override
-  _AzkarScreenState createState() => _AzkarScreenState();
+  _HadithScreenState createState() => _HadithScreenState();
 }
 
-class _AzkarScreenState extends State<AzkarScreen> {
-  List<AzkarModel> sections = [];
+class _HadithScreenState extends State<HadithScreen> {
+  List<HadithModel> sections = [];
 
   @override
   void initState() {
@@ -31,7 +33,7 @@ class _AzkarScreenState extends State<AzkarScreen> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: defaultAppBar(
-            "أذكار المسلم",
+            "الحديث الشريف",
             context),
         body: Padding(
           padding:  EdgeInsets.symmetric(vertical: 2.h,horizontal: 5.w),
@@ -46,19 +48,19 @@ class _AzkarScreenState extends State<AzkarScreen> {
     );
   }
 
-  Widget buildSectionItem({required AzkarModel model}) {
+  Widget buildSectionItem({required HadithModel model}) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => AzkarDetailScreen(id: model.id!,title: model.name!,)));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => HadithDetailScreen(id: model.id!,title: model.name!,)));
       },
-      child: buildAzkarCard(
+      child: buildHadithCard(
           image: model.choosePhoto(),
         title: model.name,
       ),
     );
   }
 
-  Widget buildAzkarCard({ required Image image, required String? title}){
+  Widget buildHadithCard({ required Image image, required String? title}){
     return Padding(
       padding:  EdgeInsets.only(top: 1.h),
       child: Card(
@@ -89,11 +91,11 @@ class _AzkarScreenState extends State<AzkarScreen> {
 
   loadSections() async {
     DefaultAssetBundle.of(context)
-        .loadString("assets/json/azkar_db.json")
+        .loadString("assets/json/hadith_db.json")
         .then((data) {
       var response = json.decode(data);
       response.forEach((section) {
-        AzkarModel _section = AzkarModel.fromJson(section);
+        HadithModel _section = HadithModel.fromJson(section);
         sections.add(_section);
       });
       setState(() {});
