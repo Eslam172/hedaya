@@ -29,53 +29,61 @@ class _HadithDetailScreenState extends State<HadithDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    return buildScreenContent();
+  }
+
+  Widget buildScreenContent(){
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: defaultAppBar(widget.title, context),
         body: Padding(
           padding: EdgeInsets.symmetric(vertical: 2.0.h, horizontal: 2.w),
-          child: ListView.separated(
-              physics: BouncingScrollPhysics(),
-              itemBuilder: (context, index) {
-                return Card(
-                  color: Colors.white,
-                  elevation: 5,
-                  shadowColor: Theme.of(context).primaryColor,
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: ListTile(
-                    title: Text(
-                      "${sectionDetails[index].reference}",
-                      textDirection: TextDirection.rtl,
-                      style: TextStyle(
-                        fontFamily: 'Regular',
-                      ),
-                    ),
-                    subtitle: Column(
-                      children: [
-                        Text(
-                          "${sectionDetails[index].content}",
-                          textDirection: TextDirection.rtl,
-                          style: TextStyle(
-                              fontSize: 11.sp, fontFamily: 'Regular',
-
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-              separatorBuilder: (context, index) => Divider(
-                    height: 1.h,
-                  ),
-              itemCount: sectionDetails.length),
+          child: buildHadithList(),
         ),
       ),
     );
+  }
+
+  Widget buildHadithList(){
+    return ListView.separated(
+        physics: BouncingScrollPhysics(),
+        itemBuilder: (context, index) {
+          return Card(
+            color: Colors.white,
+            elevation: 5,
+            shadowColor: Theme.of(context).primaryColor,
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25),
+            ),
+            child: ListTile(
+              title: Text(
+                "${sectionDetails[index].reference}",
+                textDirection: TextDirection.rtl,
+                style: TextStyle(
+                  fontFamily: 'Regular',
+                ),
+              ),
+              subtitle: Column(
+                children: [
+                  Text(
+                    "${sectionDetails[index].content}",
+                    textDirection: TextDirection.rtl,
+                    style: TextStyle(
+                      fontSize: 11.sp, fontFamily: 'Regular',
+
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+        separatorBuilder: (context, index) => Divider(
+          height: 1.h,
+        ),
+        itemCount: sectionDetails.length);
   }
 
   loadSectionDetail() async {

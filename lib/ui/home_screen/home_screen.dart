@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mushaf/app/constants.dart';
 import 'package:mushaf/app/extensions.dart';
 import 'package:mushaf/models/surah_model.dart';
 import 'package:mushaf/ui/about_screen/about_screen.dart';
@@ -238,23 +239,71 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget buildSlider(){
     return CarouselSlider(
       options: CarouselOptions(
-          height: 25.h,
+          height: 24.h,
         autoPlay: true,
         animateToClosest: true,
         pauseAutoPlayOnTouch: true,
+        enableInfiniteScroll: true,
+        autoPlayCurve: Curves.easeInOutCirc,
+        viewportFraction: 1,
+        initialPage: 0,
+        reverse: false,
+        autoPlayInterval: const Duration(seconds: 8),
+        autoPlayAnimationDuration: const Duration(seconds: 2),
+        scrollDirection: Axis.horizontal
 
       ),
 
-      items: [1,2,3,4,5].map((i) {
+      items: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19].map((i) {
         return Builder(
           builder: (BuildContext context) {
-            return Container(
-                width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.symmetric(horizontal: 5.0),
-                decoration: BoxDecoration(
-                    color: Colors.amber
+            return SizedBox(
+              width: double.infinity,
+              child: Card(
+                color: Colors.white,
+                elevation: 5,
+                shadowColor: Theme.of(context).primaryColor,
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25),
                 ),
-                child: Text('text $i', style: TextStyle(fontSize: 16.0),)
+                child: Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: 1.w),
+                  child: Row(
+                    children: [
+                      Image(image: AssetImage('assets/images/praying_1.png'),
+                        width: 35.w,
+                        height: 30.h,
+                        fit: BoxFit.fill,
+                      ),
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text('أدعية مأثورة',
+                              style: TextStyle(
+                                fontSize: 15.sp,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).primaryColor
+                              ),
+                            ),
+                             Text(
+                              Duaa[i],
+                              textDirection: TextDirection.rtl,
+                              style: TextStyle(
+                                fontSize: 12.sp, fontFamily: 'Regular',
+                              ),
+                               maxLines: 4,
+                               overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
+                      ),
+
+                    ],
+                  ),
+                )
+
+              ),
             );
           },
         );
@@ -454,9 +503,9 @@ class _HomeScreenState extends State<HomeScreen> {
   PreferredSizeWidget customAppBar(){
     return AppBar(
       title:  Image.asset(
-        'assets/images/ramadan.png',
-        width: 30.w,
-        height: 6.h,
+        'assets/images/app_icon.png',
+        width: 35.w,
+        height: 7.h,
       ),
     );
   }

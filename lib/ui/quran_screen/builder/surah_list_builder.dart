@@ -72,18 +72,25 @@ class _SurahListBuilderState extends State<SurahListBuilder> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: defaultAppBar('المصحف', context),
-      body: Column(
-        children: <Widget>[
-          /// Search field
-          buildSearchContainer(),
+    return buildScreenContent();
+  }
 
-          /// ListView represent all/searched surah(s)
-          Expanded(
-            child: buildSurahNameList(),
-          ),
-        ],
+  Widget buildScreenContent(){
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        appBar: defaultAppBar('المصحف', context),
+        body: Column(
+          children: <Widget>[
+            /// Search field
+            buildSearchContainer(),
+
+            /// ListView represent all/searched surah(s)
+            Expanded(
+              child: buildSurahNameList(),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -29,6 +29,10 @@ class _HadithScreenState extends State<HadithScreen> {
 
   @override
   Widget build(BuildContext context) {
+    return buildScreenContent();
+  }
+
+  Widget buildScreenContent(){
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
@@ -37,14 +41,18 @@ class _HadithScreenState extends State<HadithScreen> {
             context),
         body: Padding(
           padding:  EdgeInsets.symmetric(vertical: 2.h,horizontal: 5.w),
-          child: ListView.builder(
-            physics: BouncingScrollPhysics(),
-            itemBuilder: (context, index) =>
-                buildSectionItem(model: sections[index]),
-            itemCount: sections.length,
-          ),
+          child: buildHadithList(),
         ),
       ),
+    );
+  }
+
+  Widget buildHadithList(){
+    return ListView.builder(
+      physics: BouncingScrollPhysics(),
+      itemBuilder: (context, index) =>
+          buildSectionItem(model: sections[index]),
+      itemCount: sections.length,
     );
   }
 

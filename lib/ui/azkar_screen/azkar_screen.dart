@@ -27,6 +27,10 @@ class _AzkarScreenState extends State<AzkarScreen> {
 
   @override
   Widget build(BuildContext context) {
+    return buildScreenContent();
+  }
+
+  Widget buildScreenContent(){
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(

@@ -10,12 +10,14 @@ class QuranScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Directionality(
-        textDirection: TextDirection.rtl,
+    return buildScreenContent(context);
+  }
 
-        /// Use future builder and DefaultAssetBundle to load the local JSON file
-        child: new FutureBuilder(
+  Widget buildScreenContent(context){
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        body: new FutureBuilder(
             future: DefaultAssetBundle.of(context)
                 .loadString('assets/json/surah.json'),
             builder: (context, snapshot) {
@@ -31,6 +33,7 @@ class QuranScreen extends StatelessWidget {
       ),
     );
   }
+
   List<SurahModel> parseJson(String response) {
     if (response == null) {
       return [];
