@@ -254,7 +254,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
       ),
 
-      items: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19].map((i) {
+      items: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22].map((i) {
         return Builder(
           builder: (BuildContext context) {
             return SizedBox(
@@ -279,7 +279,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Expanded(
                         child: Column(
                           children: [
-                            Text('أدعية مأثورة',
+                            Text('أدعية قرآنية',
                               style: TextStyle(
                                 fontSize: 15.sp,
                                 fontWeight: FontWeight.bold,

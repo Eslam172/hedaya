@@ -62,7 +62,7 @@ class _AzkarScreenState extends State<AzkarScreen> {
     );
   }
 
-  Widget buildAzkarCard({ required Image image, required String? title}){
+  Widget buildAzkarCard({ required Image image, required String? title,}){
     return Padding(
       padding:  EdgeInsets.only(top: 1.h),
       child: Card(
