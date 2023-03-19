@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mushaf/app/extensions.dart';
 import 'package:pdfx/pdfx.dart';
 
@@ -48,18 +49,45 @@ class _SurahViewBuilderState extends State<SurahViewBuilder> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-          backgroundColor: Colors.white,
-          body:  PdfView(
-            controller: pdfController,
-            renderer: (PdfPage page) => page.render(
-              width: page.width*1.4.w,
-              height: page.height.h,
-              format: PdfPageImageFormat.jpeg,
-              quality: 100,
-            ),
-            scrollDirection: Axis.horizontal,
-            physics: BouncingScrollPhysics(),
-            //padding : EdgeInsets.zero
+          backgroundColor: Color(0xffFFFED4),
+          body:  Stack(
+            alignment: Alignment.topLeft,
+            children: [
+              PdfView(
+                controller: pdfController,
+                renderer: (PdfPage page) => page.render(
+                  width: page.width*1.4.w,
+                  height: page.height.h,
+                  format: PdfPageImageFormat.jpeg,
+                  quality: 100,
+                ),
+                scrollDirection: Axis.horizontal,
+                physics: BouncingScrollPhysics(),
+                //padding : EdgeInsets.zero
+              ),
+
+              Padding(
+                padding:  EdgeInsets.only(top: 1.h),
+                child: IconButton(
+                  icon: Icon(Icons.bookmark,
+                    size: 40.sp,
+                    color: Colors.green.withOpacity(.4),
+                  ),
+                  onPressed: (){
+                    Fluttertoast.showToast(
+                      msg: "تم الحفظ",
+                      toastLength: Toast.LENGTH_LONG,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Theme.of(context).primaryColor,
+                      textColor: Colors.white,
+                      fontSize: 13.0.sp,
+                    );
+                  },
+
+                ),
+              ),
+            ],
           )
         // FutureBuilder<PdfDocument>(
         //   future:document ,
