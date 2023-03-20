@@ -7,7 +7,11 @@ class AboutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
+    return buildScreenContent(context);
+  }
+
+  Widget buildScreenContent(context){
+    return  Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: defaultAppBar('عن التطبيق', context),
@@ -22,15 +26,15 @@ class AboutScreen extends StatelessWidget {
                       color: Theme.of(context).primaryColor,
                       fontSize: 12.sp,
                       fontWeight: FontWeight.bold,
-                    fontFamily: 'Regular'
+                      fontFamily: 'Regular'
                   ),
                 ),
                 SizedBox(height: 2.h,),
                 Text('ماذا يوجد داخل نطبيق هداية..',
                   style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 15.sp,
-                    fontWeight: FontWeight.bold
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.bold
                   ),
                 ),
                 SizedBox(height: 2.h,),
