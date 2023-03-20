@@ -10,7 +10,6 @@ import 'package:mushaf/ui/bookmark_screen/bookmark_screen.dart';
 import 'package:mushaf/ui/prayers_screen/prayers_screen.dart';
 import 'package:mushaf/ui/qepla_screen/qebla_screen.dart';
 import 'package:mushaf/ui/quran_screen/quran_screen.dart';
-import 'package:mushaf/ui/settings_screen/settings_screen.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../hadith_screen/hadith_screen.dart';
@@ -126,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const QeblaScreen()));
+                                             QeblaScreen()));
                               }),
                         ],
                       )
@@ -340,32 +339,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-          ),
-          ListTile(
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'الإعدادات',
-                  style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).primaryColor),
-                ),
-                Icon(
-                  Icons.settings,
-                  size: 18.sp,
-                  color: Theme.of(context).primaryColor,
-                ),
-
-              ],
-            ),
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const SettingsScreen()));
-            },
           ),
           ListTile(
             title: Row(

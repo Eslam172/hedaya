@@ -41,6 +41,9 @@ dependencies:
   fluttertoast: ^8.2.1
   carousel_slider: ^4.2.1
   flutter_pdfview: ^1.2.7
+  flutter_qiblah: ^2.1.0
+  flutter_svg: ^1.1.6
+  geolocator: ^9.0.2
 
 
 

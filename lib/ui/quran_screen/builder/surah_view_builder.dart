@@ -56,7 +56,7 @@ class _SurahViewBuilderState extends State<SurahViewBuilder> {
               PdfView(
                 controller: pdfController,
                 renderer: (PdfPage page) => page.render(
-                  width: page.width*1.4.w,
+                  width: page.width*1.43.w,
                   height: page.height.h,
                   format: PdfPageImageFormat.jpeg,
                   quality: 100,
