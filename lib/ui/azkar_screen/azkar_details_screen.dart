@@ -156,7 +156,9 @@ class _AzkarDetailScreenState extends State<AzkarDetailScreen> {
                         "${sectionDetails[index].content}",
                         textDirection: TextDirection.rtl,
                         style: TextStyle(
-                            fontSize: 11.sp, fontFamily: 'Regular'),
+                            fontSize: 11.sp,
+                            fontFamily: 'Regular',
+                        ),
                       ),
                       Text(
                         "${sectionDetails[index].description}",
