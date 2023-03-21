@@ -33,9 +33,8 @@ dependencies:
     sdk: flutter
 
   package_info_plus: ^3.0.3
-  cached_network_image: ^3.2.3
-#  adhan: ^2.0.0-nullsafety.2
-#  location: ^4.2.0
+  adhan: ^2.0.0-nullsafety.2
+  location: ^4.2.0
   shared_preferences: ^2.0.18
   flutter_native_splash: ^2.2.15
   pdfx: ^2.3.0
@@ -65,7 +64,7 @@ dev_dependencies:
 
 flutter_native_splash:
   color: "#fffbf2"
-  image: assets/images/hedaya_icon.png
+  image: assets/images/app_ic.png
   android: true
   ios: true
 

@@ -136,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   customCard(
                       name: 'الأذكار',
-                      image: 'assets/images/azkar_2.jpeg',
+                      image: 'assets/images/azkar_bg.jpg',
                       width: double.infinity,
                       height: 20.h,
                       onTap: () {
@@ -321,22 +321,10 @@ class _HomeScreenState extends State<HomeScreen> {
               decoration: BoxDecoration(
                 color: Theme.of(context).primaryColor,
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset('assets/images/hedaya_icon.png',
-                    width: 25.w,
-                    height: 8.h,
-                  ),
-                  Text(
-                    'هداية',
-                    style: TextStyle(
-                        fontSize: 22.sp,
-                        fontWeight: FontWeight.bold,
-                        color: const Color(0xfffffbf2)),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
+              child: Image.asset('assets/images/app_ic.png',
+                // width: 15.w,
+                // height: 5.h,
+                //fit: BoxFit.contain,
               ),
             ),
           ),
