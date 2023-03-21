@@ -1,9 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mushaf">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="هداية"
         android:name="${applicationName}"
-        android:icon="@mipmap/hedaya_icon">
+        android:icon="@mipmap/app_ic">
         <activity
             android:name=".MainActivity"
             android:exported="true"

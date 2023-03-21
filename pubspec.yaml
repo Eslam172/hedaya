@@ -34,7 +34,8 @@ dependencies:
 
   package_info_plus: ^3.0.3
   cached_network_image: ^3.2.3
-  adhan: ^1.1.16
+#  adhan: ^2.0.0-nullsafety.2
+#  location: ^4.2.0
   shared_preferences: ^2.0.18
   flutter_native_splash: ^2.2.15
   pdfx: ^2.3.0
@@ -44,6 +45,8 @@ dependencies:
   flutter_qiblah: ^2.1.0
   flutter_svg: ^1.1.6
   geolocator: ^9.0.2
+  intl: ^0.18.0
+
 
 
 

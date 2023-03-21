@@ -1,27 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:mushaf/app/constants.dart';
-import 'package:mushaf/app/extensions.dart';
 
-class PrayersScreen extends StatelessWidget {
+class PrayersScreen extends StatefulWidget {
   const PrayersScreen({Key? key}) : super(key: key);
 
   @override
+  State<PrayersScreen> createState() => _PrayersScreenState();
+}
+
+class _PrayersScreenState extends State<PrayersScreen> {
+  @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
-        appBar: defaultAppBar('مواعيد الصلاة', context),
-        body: Column(
-          children: [
-            Center(
-              child: Text('بسم الله الرحمن الرحيم',style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25.sp
-              ),),
-            )
-          ],
-        ),
-      ),
+    return Container(
+
     );
   }
 }
+

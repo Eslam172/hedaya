@@ -12,6 +12,13 @@ class Constants {
   static const String enLanguage = "en";
   static const String lang = 'lang';
 }
+
+ final double lat = 26.8103;
+ final double long = 32.4125;
+
+//bangladesh time zone
+ final double timeZone = 6.0;
+
  PreferredSizeWidget defaultAppBar(String title,context){
   return AppBar(
     title: Text(title,style: TextStyle(

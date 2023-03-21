@@ -110,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const PrayersScreen()));
+                                             PrayersScreen()));
                               }),
                           SizedBox(
                             height: 2.h,
