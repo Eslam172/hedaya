@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mushaf/app/constants.dart';
 import 'package:mushaf/app/extensions.dart';
 
 class BookmarkScreen extends StatelessWidget {
@@ -6,14 +7,10 @@ class BookmarkScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('علامة الوقوف',style: TextStyle(
-            fontSize: 18.sp,
-            fontWeight: FontWeight.bold,
-            color: Color(0xfffffbf2)
-        ),),
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        appBar: defaultAppBar('علامة الوقوف', context)
       ),
     );
   }

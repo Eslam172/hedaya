@@ -23,6 +23,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   String textFormFile = 'Empty';
   List<SurahModel> surah=[];
   var scaffoldKey = GlobalKey<ScaffoldState>();
@@ -39,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: drawer(context),
       body: Stack(
         children: [
-          Image.asset(
+           Image.asset(
             'assets/images/background.jpg',
             fit: BoxFit.fill,
             height: double.infinity,
@@ -53,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 4.h,
+                    height: 2.h,
                   ),
                   buildSlider(),
                   SizedBox(
@@ -134,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(
                     height: 2.h,
                   ),
-                  customCard(
+                   customCard(
                       name: 'الأذكار',
                       image: 'assets/images/azkar_bg.jpg',
                       width: double.infinity,
@@ -205,14 +206,14 @@ class _HomeScreenState extends State<HomeScreen> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        child: Stack(
+        child:  Stack(
           alignment: Alignment.bottomRight,
           children: [
             InkWell(
               onTap: () {
                 onTap();
               },
-              child: Image.asset(
+              child:Image.asset(
                 image,
                 fit: BoxFit.fill,
                 height: height,
@@ -321,7 +322,7 @@ class _HomeScreenState extends State<HomeScreen> {
               decoration: BoxDecoration(
                 color: Theme.of(context).primaryColor,
               ),
-              child: Image.asset('assets/images/app_ic.png',
+              child:  Image.asset('assets/images/app_ic.png',
                 // width: 15.w,
                 // height: 5.h,
                 //fit: BoxFit.contain,
@@ -472,3 +473,4 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
 }
+
