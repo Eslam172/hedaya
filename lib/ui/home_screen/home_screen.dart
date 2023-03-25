@@ -6,7 +6,6 @@ import 'package:mushaf/app/extensions.dart';
 import 'package:mushaf/models/surah_model.dart';
 import 'package:mushaf/ui/about_screen/about_screen.dart';
 import 'package:mushaf/ui/azkar_screen/azkar_screen.dart';
-import 'package:mushaf/ui/bookmark_screen/bookmark_screen.dart';
 import 'package:mushaf/ui/prayers_screen/prayers_screen.dart';
 import 'package:mushaf/ui/qepla_screen/qebla_screen.dart';
 import 'package:mushaf/ui/quran_screen/quran_screen.dart';
@@ -171,7 +170,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _initPackageInfo();
-    getData();
+    getQuranDuaa();
 
   }
 
@@ -182,7 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  getData() async {
+  getQuranDuaa() async {
     String completeQuran;
     completeQuran =
     await rootBundle.loadString('assets/text/complete_quran.txt');
@@ -236,81 +235,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ));
   }
 
-  Widget buildSlider(){
-    return CarouselSlider(
-      options: CarouselOptions(
-          height: 24.h,
-        autoPlay: true,
-        animateToClosest: true,
-        pauseAutoPlayOnTouch: true,
-        enableInfiniteScroll: true,
-        autoPlayCurve: Curves.easeInOutCirc,
-        viewportFraction: 1,
-        initialPage: 0,
-        reverse: false,
-        autoPlayInterval: const Duration(seconds: 8),
-        autoPlayAnimationDuration: const Duration(seconds: 2),
-        scrollDirection: Axis.horizontal
-
-      ),
-
-      items: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22].map((i) {
-        return Builder(
-          builder: (BuildContext context) {
-            return SizedBox(
-              width: double.infinity,
-              child: Card(
-                color: Colors.white,
-                elevation: 5,
-                shadowColor: Theme.of(context).primaryColor,
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                child: Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 1.w),
-                  child: Row(
-                    children: [
-                      Image(image: AssetImage('assets/images/praying_1.png'),
-                        width: 35.w,
-                        height: 30.h,
-                        fit: BoxFit.fill,
-                      ),
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Text('أدعية قرآنية',
-                              style: TextStyle(
-                                fontSize: 15.sp,
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context).primaryColor
-                              ),
-                            ),
-                             Text(
-                              Duaa[i],
-                              textDirection: TextDirection.rtl,
-                              style: TextStyle(
-                                fontSize: 12.sp, fontFamily: 'Regular',
-                              ),
-                               maxLines: 4,
-                               overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ),
-                      ),
-
-                    ],
-                  ),
-                )
-
-              ),
-            );
-          },
-        );
-      }).toList(),
-    );
-  }
-
   Widget drawer(context) {
     return Drawer(
       width: 55.w,
@@ -323,9 +247,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Theme.of(context).primaryColor,
               ),
               child:  Image.asset('assets/images/app_ic.png',
-                // width: 15.w,
-                // height: 5.h,
-                //fit: BoxFit.contain,
               ),
             ),
           ),
@@ -349,10 +270,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const BookmarkScreen()));
+
             },
           ),
           ListTile(

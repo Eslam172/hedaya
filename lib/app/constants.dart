@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:mushaf/app/extensions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,9 +14,9 @@ class Constants {
   static const String lang = 'lang';
 }
 
-Future saveData({required String key, required String value}) async{
+Future saveData({required String key, required bool value}) async{
   final prefs = await SharedPreferences.getInstance();
-  return await prefs.setString(key, value);
+  return await prefs.setBool(key, value);
 }
 
 Future getData({required String key,}) async{
@@ -39,6 +40,81 @@ Future getData({required String key,}) async{
     ),
   );
  }
+
+Widget buildSlider(){
+  return CarouselSlider(
+    options: CarouselOptions(
+        height: 24.h,
+        autoPlay: true,
+        animateToClosest: true,
+        pauseAutoPlayOnTouch: true,
+        enableInfiniteScroll: true,
+        autoPlayCurve: Curves.easeInOutCirc,
+        viewportFraction: 1,
+        initialPage: 0,
+        reverse: false,
+        autoPlayInterval: const Duration(seconds: 8),
+        autoPlayAnimationDuration: const Duration(seconds: 2),
+        scrollDirection: Axis.horizontal
+
+    ),
+
+    items: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22].map((i) {
+      return Builder(
+        builder: (BuildContext context) {
+          return SizedBox(
+            width: double.infinity,
+            child: Card(
+                color: Colors.white,
+                elevation: 5,
+                shadowColor: Theme.of(context).primaryColor,
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                child: Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: 1.w),
+                  child: Row(
+                    children: [
+                      Image(image: AssetImage('assets/images/praying_1.png'),
+                        width: 35.w,
+                        height: 30.h,
+                        fit: BoxFit.fill,
+                      ),
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text('أدعية قرآنية',
+                              style: TextStyle(
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context).primaryColor
+                              ),
+                            ),
+                            Text(
+                              Duaa[i],
+                              textDirection: TextDirection.rtl,
+                              style: TextStyle(
+                                fontSize: 12.sp, fontFamily: 'Regular',
+                              ),
+                              maxLines: 4,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
+                      ),
+
+                    ],
+                  ),
+                )
+
+            ),
+          );
+        },
+      );
+    }).toList(),
+  );
+}
 
  List<String> Duaa  =[
    '(وَقَالَ رَبُّكُمُ ادْعُونِي أَسْتَجِبْ لَكُمْ.)',

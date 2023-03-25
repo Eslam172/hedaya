@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:mushaf/app/constants.dart';
 import 'package:mushaf/app/extensions.dart';
 import 'package:pdfx/pdfx.dart';
 
@@ -74,15 +75,18 @@ class _SurahViewBuilderState extends State<SurahViewBuilder> {
                     color: Colors.red.withOpacity(.4),
                   ),
                   onPressed: (){
-                    Fluttertoast.showToast(
-                      msg: "تم الحفظ",
-                      toastLength: Toast.LENGTH_LONG,
-                      gravity: ToastGravity.BOTTOM,
-                      timeInSecForIosWeb: 1,
-                      backgroundColor: Theme.of(context).primaryColor,
-                      textColor: Colors.white,
-                      fontSize: 13.0.sp,
-                    );
+                    saveData(key: 'bookMark',value: true).then((value) {
+                      Fluttertoast.showToast(
+                        msg: "تم الحفظ",
+                        toastLength: Toast.LENGTH_LONG,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Theme.of(context).primaryColor,
+                        textColor: Colors.white,
+                        fontSize: 13.0.sp,
+                      );
+                    });
+
                   },
 
                 ),
