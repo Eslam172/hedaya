@@ -70,8 +70,8 @@ class _SurahViewBuilderState extends State<SurahViewBuilder> {
                 padding:  EdgeInsets.only(top: 1.h),
                 child: IconButton(
                   icon: Icon(Icons.bookmark,
-                    size: 40.sp,
-                    color: Colors.green.withOpacity(.4),
+                    size: 41.sp,
+                    color: Colors.red.withOpacity(.4),
                   ),
                   onPressed: (){
                     Fluttertoast.showToast(
