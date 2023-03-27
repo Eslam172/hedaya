@@ -56,7 +56,7 @@ dev_dependencies:
 
 flutter_native_splash:
   color: "#fffbf2"
-  image: assets/images/hedaya_icon.png
+#  image: assets/images/hedaya_icon.png
   android: true
   ios: true
 
