@@ -9,7 +9,11 @@ import 'package:mushaf/ui/azkar_screen/azkar_screen.dart';
 import 'package:mushaf/ui/prayers_screen/prayers_screen.dart';
 import 'package:mushaf/ui/qepla_screen/qebla_screen.dart';
 import 'package:mushaf/ui/quran_screen/quran_screen.dart';
+import 'package:mushaf/ui/roqia_screen/roqia_screen.dart';
+import 'package:mushaf/ui/sebha_screen/sebha_screen.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../hadith_screen/hadith_screen.dart';
 
@@ -24,8 +28,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
   String textFormFile = 'Empty';
+
   List<SurahModel> surah=[];
   var scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -171,7 +177,6 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     _initPackageInfo();
     getQuranDuaa();
-
   }
 
   Future<void> _initPackageInfo() async {
@@ -190,6 +195,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
     return textFormFile;
   }
+
 
   Widget customCard({
     required String name,
@@ -298,6 +304,53 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
           ListTile(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'الرقية الشرعية',
+                  style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).primaryColor),
+                ),
+                Icon(
+                  Icons.menu_book,
+                  size: 18.sp,
+                  color: Theme.of(context).primaryColor,
+                ),
+
+              ],
+            ),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) =>  RoqiaScreen()));
+            },
+          ),
+          ListTile(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'السبحة',
+                  style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).primaryColor),
+                ),
+                ImageIcon(AssetImage('assets/images/sebha.png'),
+                    color: Theme.of(context).primaryColor,
+                  size: 18.sp,
+                )
+
+              ],
+            ),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) =>  SebhaScreen()));
+            },
+          ),
+          ListTile(
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -349,6 +402,58 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 );
               }),
+          SizedBox(height: 3.h,),
+          Padding(
+            padding:  EdgeInsets.symmetric(horizontal: 4.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('تواصل مع المطور :',
+                  style: TextStyle(
+                  color: Colors.black.withOpacity(.8),
+                  fontFamily: 'Regular',
+                  fontSize: 11.sp
+                ),
+                ),
+                SizedBox(height: 2.h,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CircleAvatar(
+                      radius: 17.sp,
+                      backgroundColor: Theme.of(context).primaryColor,
+                      child: IconButton(
+                        onPressed: (){
+                          launchUrlString('https://www.facebook.com/profile.php?id=100004354960059');
+                        },
+                        icon: Center(
+                          child: Icon(Icons.facebook,
+                            color: Colors.white,
+                            size: 20.sp,
+                          ),
+                        ),
+                      ),
+                    ),
+                    CircleAvatar(
+                      radius: 17.sp,
+                      backgroundColor: Theme.of(context).primaryColor,
+                      child: IconButton(
+                        onPressed: ()   {
+
+                          launchUrlString('https://instagram.com/eslam_elfnan_?igshid=ZDdkNTZiNTM=');
+                        },
+                        icon: ImageIcon(AssetImage('assets/images/instagram.png'),
+                          color: Colors.white,
+                          size: 20.sp,
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+          SizedBox(height: 20.h,),
           ListTile(
             title: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -379,6 +484,9 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+
+
 
   PreferredSizeWidget customAppBar(){
     return AppBar(
