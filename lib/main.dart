@@ -24,7 +24,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void didChangeDependencies() async{
     await AppPreCache.precache(context);
-    print(123456789);
     super.didChangeDependencies();
   }
 
