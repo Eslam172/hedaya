@@ -4,7 +4,6 @@ import 'package:mushaf/ui/home_screen/home_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-
   runApp(const MyApp());
 }
 
@@ -18,6 +17,8 @@ class MyApp extends StatelessWidget {
     return  MaterialApp(
       theme: ThemeData(
         primaryColor: const Color(0xffb07a1a),
+        primarySwatch: Colors.amber,
+
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: const Color(0xffFEF5E7)),
         fontFamily: 'Quran',
         scaffoldBackgroundColor: const Color(0xffFEF5E7),
@@ -52,5 +53,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 
