@@ -1,37 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mushaf/ui/home_screen/home_screen.dart';
-import 'package:mushaf/ui/splash_screen.dart';
 
-void main() {
+import 'app/cache_helper.dart';
+import 'app/extensions.dart';
+import 'app/precache_method.dart';
+import 'ui/splash/splash_screen.dart';
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await CacheHelper.init();
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  static late BuildContext appContext;
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
+
+  @override
+  void didChangeDependencies() async{
+    await AppPreCache.precache(context);
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
-      builder: (context, child){
-        return MediaQuery(
-            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-            child: child!);
-      },
+      navigatorKey: Sizer.navigatorKey,
       theme: ThemeData(
         primaryColor: const Color(0xffb07a1a),
         primarySwatch: Colors.amber,
-
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: const Color(0xffFEF5E7)),
         fontFamily: 'Quran',
         scaffoldBackgroundColor: const Color(0xffFEF5E7),
         appBarTheme: const AppBarTheme(
           elevation: 5,
           centerTitle: true,
-
           actionsIconTheme: IconThemeData(
             color: Color(0xffFEF5E7),
           ),
@@ -48,14 +57,10 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-
-      onGenerateTitle: (context) {
-        appContext = context;
-        return '';
-      },
-      home: const Directionality(
-          textDirection: TextDirection.rtl,
-          child: SplashScreen()),
+      home: SplashScreen(),
+      // home: Directionality(
+      //     textDirection: TextDirection.rtl,
+      //     child: HomeScreen()),
     );
   }
 }
