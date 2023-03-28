@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mushaf/app/extensions.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Constants {
   static const String empty = "";

@@ -13,7 +13,9 @@ import 'package:mushaf/ui/quran_screen/quran_screen.dart';
 import 'package:mushaf/ui/settings_screen/settings_screen.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+import '../../app/cache_helper.dart';
 import '../hadith_screen/hadith_screen.dart';
+import '../quran_screen/builder/surah_view_builder.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -367,7 +369,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       builder: (context) => const SettingsScreen()));
             },
           ),
-          ListTile(
+          if(CacheHelper.getData(key: 'stop_mark',) != null)ListTile(
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -388,9 +390,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             onTap: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const BookmarkScreen()));
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SurahViewBuilder(
+                    pages: CacheHelper.getData(key: 'stop_mark',),
+                  ),
+                ),
+              );
             },
           ),
           ListTile(

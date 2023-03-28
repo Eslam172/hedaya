@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mushaf/app/precache_method.dart';
-import 'package:mushaf/ui/home_screen/home_screen.dart';
 
+import 'app/cache_helper.dart';
 import 'app/extensions.dart';
-import 'ui/splash_screen.dart';
+import 'app/precache_method.dart';
+import 'ui/splash/splash_screen.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await CacheHelper.init();
   runApp(const MyApp());
 }
 
