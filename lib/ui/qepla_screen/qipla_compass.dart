@@ -9,6 +9,8 @@ import 'package:mushaf/app/extensions.dart';
 import 'location_error_widget.dart';
 
 class QiblahCompass extends StatefulWidget {
+  const QiblahCompass({super.key});
+
   @override
   _QiblahCompassState createState() => _QiblahCompassState();
 }
@@ -27,8 +29,9 @@ class _QiblahCompassState extends State<QiblahCompass> {
       await FlutterQiblah.requestPermissions();
       final s = await FlutterQiblah.checkLocationStatus();
       _locationStreamController.sink.add(s);
-    } else
+    } else {
       _locationStreamController.sink.add(locationStatus);
+    }
   }
 
   @override
@@ -98,6 +101,8 @@ class QiblahCompassWidget extends StatelessWidget {
     height: 35.h,
     alignment: Alignment.center,
   );
+
+  QiblahCompassWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

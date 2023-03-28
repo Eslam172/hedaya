@@ -17,17 +17,17 @@ class QuranScreen extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        body: new FutureBuilder(
+        body: FutureBuilder(
             future: DefaultAssetBundle.of(context)
                 .loadString('assets/json/surah.json'),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 List<SurahModel> surahList = parseJson(snapshot.data.toString());
                 return surahList.isNotEmpty
-                    ? new SurahListBuilder(surah: surahList)
-                    : new Center(child: new CircularProgressIndicator());
+                    ? SurahListBuilder(surah: surahList)
+                    : const Center(child: CircularProgressIndicator());
               } else {
-                return new Center(child: new CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               }
             }),
       ),
@@ -40,6 +40,6 @@ class QuranScreen extends StatelessWidget {
     }
     final parsed =
     json.decode(response.toString()).cast<Map<String, dynamic>>();
-    return parsed.map<SurahModel>((json) => new SurahModel.fromJson(json)).toList();
+    return parsed.map<SurahModel>((json) => SurahModel.fromJson(json)).toList();
   }
 }

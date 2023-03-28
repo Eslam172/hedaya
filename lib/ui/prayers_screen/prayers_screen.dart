@@ -19,7 +19,7 @@ class PrayersScreen extends StatefulWidget {
 }
 
 class _PrayersScreenState extends State<PrayersScreen> {
-  Location location = new Location();
+  Location location = Location();
   LocationData? currentPosition;
   double? latitude, longitude;
 
@@ -93,11 +93,11 @@ class _PrayersScreenState extends State<PrayersScreen> {
     final prayerTimes = PrayerTimes.today(myCoordinates, params);
 
     return SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       child: Column(
         children: [
           Image(
-            image: AssetImage('assets/images/pray_bg.png'),
+            image: const AssetImage('assets/images/pray_bg.png'),
             width: double.infinity,
             height: 25.h,
             fit: BoxFit.fill,
@@ -108,13 +108,13 @@ class _PrayersScreenState extends State<PrayersScreen> {
               buildSalatCard(
                   title: 'صلاة الفجر',
                   salat:DateFormat.jm().format(prayerTimes.fajr) ,
-                  color: Color(0xff2c92ab),
+                  color: const Color(0xff2c92ab),
                   image: 'assets/images/fajr_1.png'
               ),
               buildSalatCard(
                   title: 'صلاة الشروق',
                   salat:DateFormat.jm().format(prayerTimes.sunrise) ,
-                  color: Color(0xff99c5d5),
+                  color: const Color(0xff99c5d5),
                   image: 'assets/images/sunrise_1.png'
               ),
             ],
@@ -125,13 +125,13 @@ class _PrayersScreenState extends State<PrayersScreen> {
               buildSalatCard(
                   title: 'صلاة الظهر',
                   salat:DateFormat.jm().format(prayerTimes.dhuhr) ,
-                  color: Color(0xfff9af48),
+                  color: const Color(0xfff9af48),
                   image: 'assets/images/duhr.png'
               ),
               buildSalatCard(
                   title: 'صلاة العصر',
                   salat:DateFormat.jm().format(prayerTimes.asr) ,
-                  color: Color(0xfff98d43),
+                  color: const Color(0xfff98d43),
                   image: 'assets/images/sunrise_1.png'
               ),
             ],
@@ -142,13 +142,13 @@ class _PrayersScreenState extends State<PrayersScreen> {
               buildSalatCard(
                   title: 'صلاة المغرب',
                   salat:DateFormat.jm().format(prayerTimes.maghrib) ,
-                  color: Color(0xffdb6699),
+                  color: const Color(0xffdb6699),
                   image: 'assets/images/maghrb.png'
               ),
               buildSalatCard(
                   title: 'صلاة العشاء',
                   salat:DateFormat.jm().format(prayerTimes.isha) ,
-                  color: Color(0xff0f4465),
+                  color: const Color(0xff0f4465),
                   image: 'assets/images/fajr_1.png'
               ),
             ],
@@ -239,8 +239,9 @@ class _PrayersScreenState extends State<PrayersScreen> {
       await FlutterQiblah.requestPermissions();
       final s = await FlutterQiblah.checkLocationStatus();
       _locationStreamController.sink.add(s);
-    } else
+    } else {
       _locationStreamController.sink.add(locationStatus);
+    }
   }
 
 }

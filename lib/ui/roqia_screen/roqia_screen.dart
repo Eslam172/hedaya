@@ -4,7 +4,7 @@ import 'package:mushaf/app/constants.dart';
 import 'package:mushaf/app/extensions.dart';
 
 class RoqiaScreen extends StatefulWidget {
-   RoqiaScreen({Key? key}) : super(key: key);
+   const RoqiaScreen({Key? key}) : super(key: key);
 
   @override
   State<RoqiaScreen> createState() => _RoqiaScreenState();
@@ -50,14 +50,14 @@ class _RoqiaScreenState extends State<RoqiaScreen> {
             child: Padding(
               padding:  EdgeInsets.symmetric(vertical: 1.h,horizontal: 2.w),
               child: SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 child: Text(
                   roqiaFormFile,
                   style: TextStyle(
                     fontSize: 12.0.sp,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Regular',
-                    color: Colors.black54,
+                    color: Colors.black87,
                   ),
                 ),
               ),

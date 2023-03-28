@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mushaf/app/constants.dart';
@@ -114,7 +115,7 @@ class _AzkarDetailScreenState extends State<AzkarDetailScreen> {
 
   Widget buildAzkarList(){
     return ListView.separated(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
           return Column(
             children: [
@@ -130,13 +131,13 @@ class _AzkarDetailScreenState extends State<AzkarDetailScreen> {
                   title: Text(
                     "${sectionDetails[index].reference}",
                     textDirection: TextDirection.rtl,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontFamily: 'Regular',
                     ),
                   ),
                   leading: Column(
                     children: [
-                      Text(
+                      const Text(
                         "عدد المرات",
                         style: TextStyle(
                           fontFamily: 'Regular',
@@ -144,7 +145,7 @@ class _AzkarDetailScreenState extends State<AzkarDetailScreen> {
                       ),
                       Text(
                         "${sectionDetails[index].count}",
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontFamily: 'Regular',
                         ),
                       ),
@@ -176,7 +177,7 @@ class _AzkarDetailScreenState extends State<AzkarDetailScreen> {
                 height: 7.h,
                 margin: EdgeInsets.symmetric(horizontal: 4.w),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(20),
                       bottomRight: Radius.circular(20),
                       topLeft: Radius.circular(10),
@@ -212,7 +213,9 @@ class _AzkarDetailScreenState extends State<AzkarDetailScreen> {
                               icon[index] = Icons.check_circle;
                             }
 
-                            print(counter[index]);
+                            if (kDebugMode) {
+                              print(counter[index]);
+                            }
                           },
                           icon: Icon(
                             icon[index],
@@ -223,7 +226,7 @@ class _AzkarDetailScreenState extends State<AzkarDetailScreen> {
                     ),
                     Row(
                       children: [
-                        Text(
+                        const Text(
                           "التكرار",
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
@@ -235,7 +238,7 @@ class _AzkarDetailScreenState extends State<AzkarDetailScreen> {
                         Text(
                           '${counter[index]}',
                           textDirection: TextDirection.rtl,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontFamily: 'Regular', color: Colors.white),
                         ),
                       ],
@@ -259,15 +262,17 @@ class _AzkarDetailScreenState extends State<AzkarDetailScreen> {
         .then((data) {
       var response = json.decode(data);
       response.forEach((section) {
-        AzkarDetailsModel _sectionDetail = AzkarDetailsModel.fromJson(section);
+        AzkarDetailsModel sectionDetail = AzkarDetailsModel.fromJson(section);
 
-        if (_sectionDetail.sectionId == widget.id) {
-          sectionDetails.add(_sectionDetail);
+        if (sectionDetail.sectionId == widget.id) {
+          sectionDetails.add(sectionDetail);
         }
       });
       setState(() {});
     }).catchError((error) {
-      print(error);
+      if (kDebugMode) {
+        print(error);
+      }
     });
   }
 }

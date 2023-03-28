@@ -40,7 +40,7 @@ class _AzkarScreenState extends State<AzkarScreen> {
         body: Padding(
           padding:  EdgeInsets.symmetric(vertical: 2.h,horizontal: 5.w),
           child: ListView.builder(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) =>
                 buildSectionItem(model: sections[index]),
             itemCount: sections.length,

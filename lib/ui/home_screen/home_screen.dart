@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mushaf/app/constants.dart';
@@ -11,6 +10,7 @@ import 'package:mushaf/ui/qepla_screen/qebla_screen.dart';
 import 'package:mushaf/ui/quran_screen/quran_screen.dart';
 import 'package:mushaf/ui/roqia_screen/roqia_screen.dart';
 import 'package:mushaf/ui/sebha_screen/sebha_screen.dart';
+import 'package:mushaf/ui/sunan_screen/sunan_screen.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -19,7 +19,7 @@ import '../hadith_screen/hadith_screen.dart';
 
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -35,7 +35,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return buildScreenContent();
+    return Directionality(
+      textDirection: TextDirection.rtl,
+        child: buildScreenContent());
   }
 
   Widget buildScreenContent() {
@@ -80,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                             QuranScreen()
+                                             const QuranScreen()
                                     )
                                 );
                               }),
@@ -97,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                             HadithScreen()));
+                                             const HadithScreen()));
                               }),
                         ],
                       ),
@@ -116,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                             PrayersScreen()));
+                                             const PrayersScreen()));
                               }),
                           SizedBox(
                             height: 2.h,
@@ -284,30 +286,6 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'عن التطبيق',
-                  style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).primaryColor),
-                ),
-                Icon(
-                  Icons.info_outline,
-                  size: 18.sp,
-                  color: Theme.of(context).primaryColor,
-                ),
-
-              ],
-            ),
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const AboutScreen()));
-            },
-          ),
-          ListTile(
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
                   'الرقية الشرعية',
                   style: TextStyle(
                       fontSize: 18.sp,
@@ -324,7 +302,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) =>  RoqiaScreen()));
+                  MaterialPageRoute(builder: (context) =>  const RoqiaScreen()));
             },
           ),
           ListTile(
@@ -338,16 +316,40 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontWeight: FontWeight.bold,
                       color: Theme.of(context).primaryColor),
                 ),
-                ImageIcon(AssetImage('assets/images/sebha.png'),
+                ImageIcon(const AssetImage('assets/images/sebha.png'),
                     color: Theme.of(context).primaryColor,
                   size: 18.sp,
+
                 )
 
               ],
             ),
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) =>  SebhaScreen()));
+                  MaterialPageRoute(builder: (context) =>  const SebhaScreen()));
+            },
+          ),
+          ListTile(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'سنن مؤكدة',
+                  style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).primaryColor),
+                ),
+               Icon(Icons.library_books,
+                 color: Theme.of(context).primaryColor,
+                 size: 18.sp,
+               )
+
+              ],
+            ),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) =>  const SunanScreen()));
             },
           ),
           ListTile(
@@ -382,7 +384,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
                     decoration: BoxDecoration(
                        // color: const Color(0xfffffbf2),
-                      color: Color(0xffFEF5E7),
+                      color: const Color(0xffFEF5E7),
                         borderRadius: BorderRadius.circular(35)),
                     child: SingleChildScrollView(
                       physics: const BouncingScrollPhysics(),
@@ -402,6 +404,30 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 );
               }),
+          ListTile(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'عن التطبيق',
+                  style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).primaryColor),
+                ),
+                Icon(
+                  Icons.info_outline,
+                  size: 18.sp,
+                  color: Theme.of(context).primaryColor,
+                ),
+
+              ],
+            ),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const AboutScreen()));
+            },
+          ),
           SizedBox(height: 3.h,),
           Padding(
             padding:  EdgeInsets.symmetric(horizontal: 4.w),
@@ -442,7 +468,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                           launchUrlString('https://instagram.com/eslam_elfnan_?igshid=ZDdkNTZiNTM=');
                         },
-                        icon: ImageIcon(AssetImage('assets/images/instagram.png'),
+                        icon: ImageIcon(const AssetImage('assets/images/instagram.png'),
                           color: Colors.white,
                           size: 20.sp,
                         ),
@@ -453,7 +479,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          SizedBox(height: 20.h,),
+          SizedBox(height: 5.h,),
           ListTile(
             title: Row(
               mainAxisAlignment: MainAxisAlignment.center,

@@ -5,20 +5,20 @@ import 'constants.dart';
 
 extension Sizer on num {
 
-  static GlobalKey<NavigatorState> navigatorKey =  GlobalKey<NavigatorState>();
-  static BuildContext appContext = navigatorKey.currentState!.context;
+  //static GlobalKey<NavigatorState> navigatorKey =  GlobalKey<NavigatorState>();
+ // static BuildContext appContext = navigatorKey.currentState!.context;
 
   double  get h {
-    var h = appContext.height;
+    var h = MyApp.appContext.height;
     return (this / 100) * h;
   }
 
   double  get w {
-    var w = appContext.width;
+    var w = MyApp.appContext.width;
     return (this / 100) * w;
   }
 
-  double get sp => this * (appContext.width / 3) / 100;
+  double get sp => this * (MyApp.appContext.width / 3) / 100;
 }
 
 extension OnContext on BuildContext {

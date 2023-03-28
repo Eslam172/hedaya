@@ -34,12 +34,19 @@ dependencies:
 
   package_info_plus: ^3.0.3
   cached_network_image: ^3.2.3
-  adhan: ^1.1.16
+  adhan: ^2.0.0-nullsafety.2
   shared_preferences: ^2.0.18
-  flutter_native_splash: ^2.2.15
   pdfx: ^2.3.0
   fluttertoast: ^8.2.1
   carousel_slider: ^4.2.1
+  flutter_qiblah: ^2.1.0
+  flutter_pdfview: ^1.2.7
+  flutter_svg: ^1.1.6
+  geolocator: ^9.0.2
+  url_launcher: ^6.1.10
+  location: ^4.2.0
+  intl: ^0.18.0
+
 
 
 
@@ -54,11 +61,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-flutter_native_splash:
-  color: "#fffbf2"
-#  image: assets/images/hedaya_icon.png
-  android: true
-  ios: true
+
 
 
   # The "flutter_lints" package below contains a set of recommended lints to

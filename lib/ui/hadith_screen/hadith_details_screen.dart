@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mushaf/app/constants.dart';
 import 'package:mushaf/app/extensions.dart';
 import 'dart:convert';
-
-import 'package:mushaf/models/azkar_details_model.dart';
 import 'package:mushaf/models/hadith_details_model.dart';
 
 class HadithDetailScreen extends StatefulWidget {
@@ -47,7 +44,7 @@ class _HadithDetailScreenState extends State<HadithDetailScreen> {
 
   Widget buildHadithList(){
     return ListView.separated(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
           return Card(
             color: Colors.white,
@@ -61,7 +58,7 @@ class _HadithDetailScreenState extends State<HadithDetailScreen> {
               title: Text(
                 "${sectionDetails[index].reference}",
                 textDirection: TextDirection.rtl,
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: 'Regular',
                 ),
               ),

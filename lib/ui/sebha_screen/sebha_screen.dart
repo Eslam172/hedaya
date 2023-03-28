@@ -6,6 +6,8 @@ import 'package:mushaf/app/extensions.dart';
 
 
 class SebhaScreen extends StatefulWidget {
+  const SebhaScreen({super.key});
+
 
   @override
   _SebhaScreenState createState() => _SebhaScreenState();
@@ -23,7 +25,7 @@ class _SebhaScreenState extends State<SebhaScreen> {
       child: Scaffold(
         appBar: defaultAppBar('السبحة', context),
         body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Padding(
             padding:  EdgeInsets.symmetric(horizontal: 5.w,vertical: 3.h),
             child: Column(
@@ -43,8 +45,8 @@ class _SebhaScreenState extends State<SebhaScreen> {
                             ))
                     ),
                     InkWell(
-                      highlightColor: Color(0xffFEF5E7),
-                        overlayColor: MaterialStateProperty.all(Color(0xffFEF5E7)),
+                      highlightColor: const Color(0xffFEF5E7),
+                        overlayColor: MaterialStateProperty.all(const Color(0xffFEF5E7)),
                         onTap: (){
                           onSebhaPressed();
                         },
@@ -105,7 +107,7 @@ class _SebhaScreenState extends State<SebhaScreen> {
                     color: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.circular(30)),
                   child: Text(
-                    '${tasbehList[tasbehIndex]}',
+                    tasbehList[tasbehIndex],
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18.sp,
@@ -120,7 +122,7 @@ class _SebhaScreenState extends State<SebhaScreen> {
     );
   }
   void onSebhaPressed(){
-    this.setState(() {
+    setState(() {
       counter++;
       angle+=40;
       if(counter%33==0){

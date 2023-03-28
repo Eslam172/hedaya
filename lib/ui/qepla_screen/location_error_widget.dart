@@ -32,18 +32,18 @@ class LocationErrorWidget extends StatelessWidget {
           ),
            SizedBox(height: 5.h),
           ElevatedButton(
-            child:  Text("أعد المحاولة",
-              style: TextStyle(
-                fontSize: 12.sp,
-                fontFamily: 'Regular'
-              ),
-            ),
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor)
             ),
             onPressed: () {
               if (callback != null) callback!();
             },
+            child:  Text("أعد المحاولة",
+              style: TextStyle(
+                fontSize: 12.sp,
+                fontFamily: 'Regular'
+              ),
+            ),
           )
         ],
       ),

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mushaf/app/constants.dart';
 import 'package:mushaf/app/extensions.dart';
@@ -7,7 +8,7 @@ import 'package:mushaf/ui/quran_screen/builder/surah_view_builder.dart';
 class SurahListBuilder extends StatefulWidget {
     final List<SurahModel> surah;
 
-  SurahListBuilder({required this.surah}) : super();
+  const SurahListBuilder({super.key, required this.surah});
 
   @override
   _SurahListBuilderState createState() => _SurahListBuilderState();
@@ -38,14 +39,14 @@ class _SurahListBuilderState extends State<SurahListBuilder> {
     List<SurahModel> listData = <SurahModel>[];
     if (query.isNotEmpty) {
       /// Loop all surah(s)
-      searchList.forEach((item) {
+      for (var item in searchList) {
         /// Filter by (titleAr:exact,title:partial,pageIndex)
         if (item.titleAr!.contains(query) ||
             item.title!.toLowerCase().contains(query.toLowerCase()) ||
             item.pageIndex.toString().contains(query)) {
           listData.add(item);
         }
-      });
+      }
 
       /// Fill surah List with searched surah(s)
       setState(() {
@@ -108,7 +109,9 @@ class _SurahListBuilderState extends State<SurahListBuilder> {
         cursorWidth: .4.w,
         onChanged: (value) {
           filterSearchResults(value);
-          print(value);
+          if (kDebugMode) {
+            print(value);
+          }
         },
         controller: editingController,
         decoration: InputDecoration(
@@ -131,7 +134,7 @@ class _SurahListBuilderState extends State<SurahListBuilder> {
               fontSize: 20.sp,
               fontWeight: FontWeight.w500
           ),
-          prefixIcon: Icon(Icons.search,
+          prefixIcon: const Icon(Icons.search,
             color: Colors.black,
           ),
         ),

@@ -16,7 +16,7 @@ class AboutScreen extends StatelessWidget {
       child: Scaffold(
         appBar: defaultAppBar('عن التطبيق', context),
         body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Padding(
             padding:  EdgeInsets.symmetric(vertical: 2.h,horizontal: 4.w),
             child: Column(
@@ -72,6 +72,24 @@ class AboutScreen extends StatelessWidget {
                     context,
                     'دعاء ختم القرءان الكريم',
                     'يحتوي تطبيق هداية علي دعاء ختم القرءان الكريم.'
+                ),
+                SizedBox(height: 1.h,),
+                buildCustomCard(
+                    context,
+                    'الرقية الشرعية',
+                    'يحتوي تطبيق هداية علي الرقية الشرعية.'
+                ),
+                SizedBox(height: 1.h,),
+                buildCustomCard(
+                    context,
+                    'السبحة',
+                    'يحتوي تطبيق هداية علي السبحة.'
+                ),
+                SizedBox(height: 1.h,),
+                buildCustomCard(
+                    context,
+                    'السنن المؤكدة',
+                    'يحتوي تطبيق هداية علي السنن المؤكدة عن النبي صلي الله عليه وسلم.'
                 ),
               ],
             ),

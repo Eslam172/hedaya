@@ -16,11 +16,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Timer(
-      Duration(seconds: 3),
+      const Duration(seconds: 3),
       () => Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => HomeScreen(),
+          builder: (context) => const HomeScreen(),
         ),
       ),
     );
@@ -30,10 +30,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfffffbf2),
+      backgroundColor: const Color(0xffFEF5E7),
       body: Center(
           child: Image.asset(
-        'assets/images/hedaya_icon.png',
+        'assets/images/app_ic.png',
         width: 30.w,
       )),
     );

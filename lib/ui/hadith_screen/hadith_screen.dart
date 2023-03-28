@@ -4,10 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:mushaf/app/constants.dart';
 import 'package:mushaf/app/extensions.dart';
 import 'dart:convert';
-
-import 'package:mushaf/models/azkar_model.dart';
 import 'package:mushaf/models/hadith_model.dart';
-import 'package:mushaf/ui/azkar_screen/azkar_details_screen.dart';
 import 'package:mushaf/ui/hadith_screen/hadith_details_screen.dart';
 
 class HadithScreen extends StatefulWidget {
@@ -49,7 +46,7 @@ class _HadithScreenState extends State<HadithScreen> {
 
   Widget buildHadithList(){
     return ListView.builder(
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) =>
           buildSectionItem(model: sections[index]),
       itemCount: sections.length,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mushaf/ui/home_screen/home_screen.dart';
+import 'package:mushaf/ui/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,6 +16,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
+      builder: (context, child){
+        return MediaQuery(
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+            child: child!);
+      },
       theme: ThemeData(
         primaryColor: const Color(0xffb07a1a),
         primarySwatch: Colors.amber,
@@ -47,9 +53,9 @@ class MyApp extends StatelessWidget {
         appContext = context;
         return '';
       },
-      home: Directionality(
+      home: const Directionality(
           textDirection: TextDirection.rtl,
-          child: HomeScreen()),
+          child: SplashScreen()),
     );
   }
 }
