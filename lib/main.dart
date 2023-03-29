@@ -57,7 +57,7 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: const SplashScreen(),
       // home: Directionality(
       //     textDirection: TextDirection.rtl,
       //     child: HomeScreen()),

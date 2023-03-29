@@ -59,7 +59,7 @@ class AboutScreen extends StatelessWidget {
                 buildCustomCard(
                     context,
                     'مواقيت الصلاة',
-                    'يحتوي تطبيق هداية علي مواقيت الصلوات الخمس بحسب كل دولة.'
+                    'يحتوي تطبيق هداية علي مواقيت الصلوات الخمس.'
                 ),
                 SizedBox(height: 1.h,),
                 buildCustomCard(

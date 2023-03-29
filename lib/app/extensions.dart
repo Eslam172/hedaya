@@ -1,24 +1,23 @@
 
 import 'package:flutter/material.dart';
-import '../main.dart';
 import 'constants.dart';
 
 extension Sizer on num {
 
-  //static GlobalKey<NavigatorState> navigatorKey =  GlobalKey<NavigatorState>();
- // static BuildContext appContext = navigatorKey.currentState!.context;
+  static GlobalKey<NavigatorState> navigatorKey =  GlobalKey<NavigatorState>();
+  static BuildContext appContext = navigatorKey.currentState!.context;
 
   double  get h {
-    var h = MyApp.appContext.height;
+    var h = appContext.height;
     return (this / 100) * h;
   }
 
   double  get w {
-    var w = MyApp.appContext.width;
+    var w = appContext.width;
     return (this / 100) * w;
   }
 
-  double get sp => this * (MyApp.appContext.width / 3) / 100;
+  double get sp => this * (appContext.width / 3) / 100;
 }
 
 extension OnContext on BuildContext {
@@ -103,12 +102,12 @@ extension OnColor on Color{
     /// divisor of 5 would mean [50] is a lightness of 1.0 or
     /// a color of #ffffff. A value of six would be near white
     /// but not quite.
-    final lowDivisor = 6;
+    const lowDivisor = 6;
 
     /// if [500] is the default color, there are at LEAST four
     /// steps above [500]. A divisor of 4 would mean [900] is
     /// a lightness of 0.0 or color of #000000
-    final highDivisor = 5;
+    const highDivisor = 5;
 
     final lowStep = (1.0 - lightness) / lowDivisor;
     final highStep = lightness / highDivisor;

@@ -6,16 +6,18 @@ import 'package:mushaf/app/extensions.dart';
 import 'package:mushaf/models/surah_model.dart';
 import 'package:mushaf/ui/about_screen/about_screen.dart';
 import 'package:mushaf/ui/azkar_screen/azkar_screen.dart';
-import 'package:mushaf/ui/bookmark_screen/bookmark_screen.dart';
 import 'package:mushaf/ui/prayers_screen/prayers_screen.dart';
 import 'package:mushaf/ui/qepla_screen/qebla_screen.dart';
 import 'package:mushaf/ui/quran_screen/quran_screen.dart';
-import 'package:mushaf/ui/settings_screen/settings_screen.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../app/cache_helper.dart';
 import '../hadith_screen/hadith_screen.dart';
 import '../quran_screen/builder/surah_view_builder.dart';
+import '../roqia_screen/roqia_screen.dart';
+import '../sebha_screen/sebha_screen.dart';
+import '../sunan_screen/sunan_screen.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -36,126 +38,129 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget buildScreenContent() {
-    return Scaffold(
-      appBar: customAppBar(),
-      key: scaffoldKey,
-      drawer: drawer(context),
-      body: Stack(
-        children: [
-          Image.asset(
-            'assets/images/background.jpg',
-            fit: BoxFit.fill,
-            height: double.infinity,
-            opacity: const AlwaysStoppedAnimation(.6),
-          ),
-          SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 3.w),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 4.h,
-                  ),
-                  buildSlider(),
-                  SizedBox(
-                    height: 2.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Column(
-                        children: [
-                          customCard(
-                              name: 'المصحف',
-                              image: 'assets/images/quran_2.jpg',
-                              width: 41.w,
-                              height: 30.h,
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                             QuranScreen()
-                                    )
-                                );
-                              }),
-                          SizedBox(
-                            height: 2.h,
-                          ),
-                          customCard(
-                              name: 'الحديث الشريف',
-                              image: 'assets/images/hadeeth_2.jpg',
-                              width: 41.w,
-                              height: 20.h,
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                             HadithScreen()));
-                              }),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 6.w,
-                      ),
-                      Column(
-                        children: [
-                          customCard(
-                              name: 'مواعيد الصلاة',
-                              image: 'assets/images/prayer.jpg',
-                              width: 41.w,
-                              height: 20.h,
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const PrayersScreen()));
-                              }),
-                          SizedBox(
-                            height: 2.h,
-                          ),
-                          customCard(
-                              name: 'القبلة',
-                              image: 'assets/images/kaaba.jpg',
-                              width: 41.w,
-                              height: 30.h,
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const QeblaScreen()));
-                              }),
-                        ],
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 2.h,
-                  ),
-                  customCard(
-                      name: 'الأذكار',
-                      image: 'assets/images/azkar_2.jpeg',
-                      width: double.infinity,
-                      height: 20.h,
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const AzkarScreen()));
-                      }),
-                  SizedBox(
-                    height: 2.h,
-                  ),
-                ],
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        appBar: customAppBar(),
+        key: scaffoldKey,
+        drawer: drawer(context),
+        body: Stack(
+          children: [
+            Image.asset(
+              'assets/images/background.jpg',
+              fit: BoxFit.fill,
+              height: double.infinity,
+              opacity: const AlwaysStoppedAnimation(.6),
+            ),
+            SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 3.w),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 4.h,
+                    ),
+                    buildSlider(),
+                    SizedBox(
+                      height: 2.h,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Column(
+                          children: [
+                            customCard(
+                                name: 'المصحف',
+                                image: 'assets/images/quran_2.jpg',
+                                width: 41.w,
+                                height: 30.h,
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                               const QuranScreen()
+                                      )
+                                  );
+                                }),
+                            SizedBox(
+                              height: 2.h,
+                            ),
+                            customCard(
+                                name: 'الحديث الشريف',
+                                image: 'assets/images/hadeeth_2.jpg',
+                                width: 41.w,
+                                height: 20.h,
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                               const HadithScreen()));
+                                }),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 6.w,
+                        ),
+                        Column(
+                          children: [
+                            customCard(
+                                name: 'مواعيد الصلاة',
+                                image: 'assets/images/prayer.jpg',
+                                width: 41.w,
+                                height: 20.h,
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const PrayersScreen()));
+                                }),
+                            SizedBox(
+                              height: 2.h,
+                            ),
+                            customCard(
+                                name: 'القبلة',
+                                image: 'assets/images/kaaba.jpg',
+                                width: 41.w,
+                                height: 30.h,
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                               QeblaScreen()));
+                                }),
+                          ],
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 2.h,
+                    ),
+                    customCard(
+                        name: 'الأذكار',
+                        image: 'assets/images/azkar_bg.jpg',
+                        width: double.infinity,
+                        height: 20.h,
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const AzkarScreen()));
+                        }),
+                    SizedBox(
+                      height: 2.h,
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -238,80 +243,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ));
   }
 
-  Widget buildSlider(){
-    return CarouselSlider(
-      options: CarouselOptions(
-          height: 24.h,
-        autoPlay: true,
-        animateToClosest: true,
-        pauseAutoPlayOnTouch: true,
-        enableInfiniteScroll: true,
-        autoPlayCurve: Curves.easeInOutCirc,
-        viewportFraction: 1,
-        initialPage: 0,
-        reverse: false,
-        autoPlayInterval: const Duration(seconds: 8),
-        autoPlayAnimationDuration: const Duration(seconds: 2),
-        scrollDirection: Axis.horizontal
-
-      ),
-
-      items: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19].map((i) {
-        return Builder(
-          builder: (BuildContext context) {
-            return SizedBox(
-              width: double.infinity,
-              child: Card(
-                color: Colors.white,
-                elevation: 5,
-                shadowColor: Theme.of(context).primaryColor,
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                child: Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 1.w),
-                  child: Row(
-                    children: [
-                      Image(image: AssetImage('assets/images/praying_1.png'),
-                        width: 35.w,
-                        height: 30.h,
-                        fit: BoxFit.fill,
-                      ),
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Text('أدعية مأثورة',
-                              style: TextStyle(
-                                fontSize: 15.sp,
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context).primaryColor
-                              ),
-                            ),
-                             Text(
-                              Duaa[i],
-                              textDirection: TextDirection.rtl,
-                              style: TextStyle(
-                                fontSize: 12.sp, fontFamily: 'Regular',
-                              ),
-                               maxLines: 4,
-                               overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ),
-                      ),
-
-                    ],
-                  ),
-                )
-
-              ),
-            );
-          },
-        );
-      }).toList(),
-    );
-  }
 
   Widget drawer(context) {
     return Drawer(
@@ -324,50 +255,9 @@ class _HomeScreenState extends State<HomeScreen> {
               decoration: BoxDecoration(
                 color: Theme.of(context).primaryColor,
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset('assets/images/hedaya_icon.png',
-                    width: 25.w,
-                    height: 8.h,
-                  ),
-                  Text(
-                    'هداية',
-                    style: TextStyle(
-                        fontSize: 22.sp,
-                        fontWeight: FontWeight.bold,
-                        color: const Color(0xfffffbf2)),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
+              child:  Image.asset('assets/images/app_ic.png',
               ),
             ),
-          ),
-          ListTile(
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'الإعدادات',
-                  style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).primaryColor),
-                ),
-                Icon(
-                  Icons.settings,
-                  size: 18.sp,
-                  color: Theme.of(context).primaryColor,
-                ),
-
-              ],
-            ),
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const SettingsScreen()));
-            },
           ),
           if(CacheHelper.getData(key: 'stop_mark',) != null)ListTile(
             title: Row(
@@ -404,14 +294,14 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'عن التطبيق',
+                  'الرقية الشرعية',
                   style: TextStyle(
                       fontSize: 18.sp,
                       fontWeight: FontWeight.bold,
                       color: Theme.of(context).primaryColor),
                 ),
                 Icon(
-                  Icons.info_outline,
+                  Icons.menu_book,
                   size: 18.sp,
                   color: Theme.of(context).primaryColor,
                 ),
@@ -420,7 +310,54 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const AboutScreen()));
+                  MaterialPageRoute(builder: (context) =>  const RoqiaScreen()));
+            },
+          ),
+          ListTile(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'السبحة',
+                  style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).primaryColor),
+                ),
+                ImageIcon(const AssetImage('assets/images/sebha.png'),
+                  color: Theme.of(context).primaryColor,
+                  size: 18.sp,
+
+                )
+
+              ],
+            ),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) =>  const SebhaScreen()));
+            },
+          ),
+          ListTile(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'سنن مؤكدة',
+                  style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).primaryColor),
+                ),
+                Icon(Icons.library_books,
+                  color: Theme.of(context).primaryColor,
+                  size: 18.sp,
+                )
+
+              ],
+            ),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) =>  const SunanScreen()));
             },
           ),
           ListTile(
@@ -451,25 +388,25 @@ class _HomeScreenState extends State<HomeScreen> {
                   //clipBehavior: Clip.antiAlias,
                   builder: (context) => Container(
                     margin:
-                        EdgeInsets.only(left: 2.w,right: 2.w, top: 20.h,bottom: 1.h),
+                    EdgeInsets.only(left: 2.w,right: 2.w, top: 20.h,bottom: 1.h),
                     padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
                     decoration: BoxDecoration(
-                       // color: const Color(0xfffffbf2),
-                      color: Color(0xffFEF5E7),
+                      // color: const Color(0xfffffbf2),
+                        color: const Color(0xffFEF5E7),
                         borderRadius: BorderRadius.circular(35)),
                     child: SingleChildScrollView(
                       physics: const BouncingScrollPhysics(),
                       child: Column(
                         children: [
                           Text(textFormFile,
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            fontFamily: 'Regular',
-                            height: .3.h,
-                            color: Colors.black
-                          ),
-                          textAlign: TextAlign.right,
-                        )],
+                            style: TextStyle(
+                                fontSize: 16.sp,
+                                fontFamily: 'Regular',
+                                height: .3.h,
+                                color: Colors.black
+                            ),
+                            textAlign: TextAlign.right,
+                          )],
                       ),
                     ),
                   ),
@@ -477,28 +414,89 @@ class _HomeScreenState extends State<HomeScreen> {
               }),
           ListTile(
             title: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'رقم الإصدار',
+                  'عن التطبيق',
                   style: TextStyle(
-                      fontSize: 15.sp,
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.bold,
-                      color: Colors.grey.shade500),
+                      color: Theme.of(context).primaryColor),
                 ),
-                SizedBox(
-                  width: 3.w,
+                Icon(
+                  Icons.info_outline,
+                  size: 18.sp,
+                  color: Theme.of(context).primaryColor,
                 ),
-                Text(
-                  _packageInfo.version,
-                  style: TextStyle(
-                      fontSize: 15.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey.shade500),
-                ),
-
 
               ],
+            ),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const AboutScreen()));
+            },
+          ),
+          SizedBox(height: 3.h,),
+          Padding(
+            padding:  EdgeInsets.symmetric(horizontal: 4.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('تواصل مع المطور :',
+                  style: TextStyle(
+                      color: Colors.black.withOpacity(.8),
+                      fontFamily: 'Regular',
+                      fontSize: 11.sp
+                  ),
+                ),
+                SizedBox(height: 2.h,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CircleAvatar(
+                      radius: 17.sp,
+                      backgroundColor: Theme.of(context).primaryColor,
+                      child: IconButton(
+                        onPressed: (){
+                          launchUrlString('https://www.facebook.com/profile.php?id=100004354960059');
+                        },
+                        icon: Center(
+                          child: Icon(Icons.facebook,
+                            color: Colors.white,
+                            size: 20.sp,
+                          ),
+                        ),
+                      ),
+                    ),
+                    CircleAvatar(
+                      radius: 17.sp,
+                      backgroundColor: Theme.of(context).primaryColor,
+                      child: IconButton(
+                        onPressed: ()   {
+
+                          launchUrlString('https://instagram.com/eslam_elfnan_?igshid=ZDdkNTZiNTM=');
+                        },
+                        icon: ImageIcon(const AssetImage('assets/images/instagram.png'),
+                          color: Colors.white,
+                          size: 20.sp,
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+          SizedBox(height: 8.h,),
+          ListTile(
+            title: Center(
+              child: Text(
+                _packageInfo.version,
+                style: TextStyle(
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey.shade500),
+              ),
             ),
           ),
         ],

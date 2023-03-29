@@ -13,16 +13,6 @@ class Constants {
   static const String lang = 'lang';
 }
 
-Future saveData({required String key, required bool value}) async{
-  final prefs = await SharedPreferences.getInstance();
-  return await prefs.setBool(key, value);
-}
-
-Future getData({required String key,}) async{
-  final prefs = await SharedPreferences.getInstance();
-  return await prefs.get(key);
-}
-
  PreferredSizeWidget defaultAppBar(String title,context){
   return AppBar(
     title: Text(title,style: TextStyle(
