@@ -45,9 +45,7 @@ class _SurahViewBuilderState extends State<SurahViewBuilder> {
   @override
   Widget build(BuildContext context) {
     return buildScreenContent();
-    // return PDFView(
-    //   initialPage: widget.pages,
-    // );
+
   }
 
   Widget buildScreenContent() {
@@ -58,8 +56,8 @@ class _SurahViewBuilderState extends State<SurahViewBuilder> {
         body: PdfView(
           controller: pdfController,
           renderer: (PdfPage page) async => await page.render(
-            width: page.width * 1.42.w,
-            height: page.height * 1.h,
+            width: page.width,
+            height: page.height*1.2,
             format: PdfPageImageFormat.jpeg,
             quality: 100,
           ),
@@ -76,63 +74,6 @@ class _SurahViewBuilderState extends State<SurahViewBuilder> {
     );
   }
 }
-
-// class PDFView extends StatefulWidget {
-//   const PDFView({
-//     required this.initialPage,
-//     Key? key}) : super(key: key);
-//
-//   final int initialPage;
-//   @override
-//   State<PDFView> createState() => _PDFViewState();
-// }
-//
-// class _PDFViewState extends State<PDFView> {
-//
-//   PdfViewerController controller = PdfViewerController();
-//
-//   @override
-//   void initState() {
-//     controller.jumpToPage(widget.initialPage);
-//     super.initState();
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Color(0xffFFFED5),
-//       body: Stack(
-//         children: [
-//           Container(
-//             constraints: BoxConstraints.expand(),
-//             child: Directionality(
-//               textDirection: TextDirection.rtl,
-//               child: SfPdfViewerTheme(
-//                 data: SfPdfViewerThemeData(
-//                   backgroundColor: Color(0xffFFFED5),
-//                   progressBarColor: Color(0xffffc823),
-//                 ),
-//                 child: SfPdfViewer.asset(
-//                   'assets/pdf/quran.pdf',
-//                   controller: controller,
-//                   pageLayoutMode: PdfPageLayoutMode.single,canShowScrollHead: false,
-//                   interactionMode: PdfInteractionMode.selection,
-//                   enableDoubleTapZooming: false,
-//                   scrollDirection: PdfScrollDirection.horizontal,
-//                   onPageChanged: (page) {
-//                     int index = page.newPageNumber;
-//                     CacheHelper.saveData(key: 'stop_mark', value: index);
-//                   },
-//                   // controller: _pdfViewerController,
-//                 ),
-//               ),
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
 
 
 
