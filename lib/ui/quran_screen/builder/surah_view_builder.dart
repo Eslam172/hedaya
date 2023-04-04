@@ -57,7 +57,7 @@ class _SurahViewBuilderState extends State<SurahViewBuilder> {
           controller: pdfController,
           renderer: (PdfPage page) async => await page.render(
             width: page.width,
-            height: page.height*1.2,
+            height: page.height*1.3,
             format: PdfPageImageFormat.jpeg,
             quality: 100,
           ),
